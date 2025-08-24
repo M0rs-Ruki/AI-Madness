@@ -1,0 +1,772 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Madness Dashboard</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        :root {
+            --dark-bg: #0a0a0a;
+            --darker-bg: #050505;
+            --sidebar-bg: rgba(5, 5, 5, 0.85);
+            --glass-bg: rgba(255, 255, 255, 0.05);
+            --glass-border: rgba(255, 51, 51, 0.2);
+            --red-gradient: linear-gradient(135deg, #ff3333, #cc0000);
+            --text-white: #ffffff;
+            --text-gray: #aaaaaa;
+            --red-glow: 0 0 10px rgba(255, 51, 51, 0.5);
+        }
+
+        body {
+            background: var(--dark-bg);
+            color: var(--text-white);
+            display: flex;
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+
+        /* Sidebar Styles */
+        .sidebar {
+            width: 280px;
+            background: var(--sidebar-bg);
+            backdrop-filter: blur(15px);
+            padding: 1.5rem 1rem;
+            display: flex;
+            flex-direction: column;
+            border-right: 1px solid rgba(255, 51, 51, 0.1);
+            position: fixed;
+            height: 100vh;
+            z-index: 100;
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: 800;
+            background: var(--red-gradient);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            margin-bottom: 2rem;
+            padding-left: 0.5rem;
+        }
+
+        .new-chat-btn {
+            background: var(--red-gradient);
+            border: none;
+            padding: 0.8rem 1rem;
+            border-radius: 12px;
+            color: white;
+            font-weight: 600;
+            margin-bottom: 2rem;
+            cursor: pointer;
+            backdrop-filter: blur(5px);
+            box-shadow: 0 4px 15px rgba(255, 51, 51, 0.3);
+            transition: all 0.3s ease;
+        }
+
+        .new-chat-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(255, 51, 51, 0.4);
+        }
+
+        .ai-models {
+            flex-grow: 1;
+            overflow-y: auto;
+            padding-right: 0.5rem;
+        }
+
+        .ai-model {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0.8rem 1rem;
+            margin-bottom: 0.5rem;
+            border-radius: 8px;
+            background: rgba(255, 255, 255, 0.03);
+            transition: all 0.3s ease;
+        }
+
+        .ai-model:hover {
+            background: rgba(255, 51, 51, 0.1);
+        }
+
+        .model-name {
+            font-size: 0.9rem;
+            font-weight: 500;
+        }
+
+        /* Toggle Switch */
+        .toggle-switch {
+            position: relative;
+            display: inline-block;
+            width: 44px;
+            height: 24px;
+        }
+
+        .toggle-switch input {
+            opacity: 0;
+            width: 0;
+            height: 0;
+        }
+
+        .slider {
+            position: absolute;
+            cursor: pointer;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: #333;
+            transition: .4s;
+            border-radius: 34px;
+        }
+
+        .slider:before {
+            position: absolute;
+            content: "";
+            height: 18px;
+            width: 18px;
+            left: 3px;
+            bottom: 3px;
+            background-color: white;
+            transition: .4s;
+            border-radius: 50%;
+        }
+
+        input:checked + .slider {
+            background: var(--red-gradient);
+        }
+
+        input:checked + .slider:before {
+            transform: translateX(20px);
+        }
+
+        /* Bottom Section */
+        .bottom-section {
+            margin-top: auto;
+            padding: 1rem 0;
+        }
+
+        .projects {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0.8rem 1rem;
+            margin-bottom: 1rem;
+            border-radius: 8px;
+            background: rgba(255, 255, 255, 0.03);
+            cursor: pointer;
+        }
+
+        .projects:hover {
+            background: rgba(255, 51, 51, 0.1);
+        }
+
+        .project-text {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .badge {
+            background: var(--red-gradient);
+            color: white;
+            border-radius: 20px;
+            padding: 0.2rem 0.6rem;
+            font-size: 0.7rem;
+            font-weight: 600;
+        }
+
+        .plan {
+            padding: 1rem;
+            background: rgba(255, 255, 255, 0.03);
+            border-radius: 8px;
+            margin-bottom: 1rem;
+        }
+
+        .plan-text {
+            font-size: 0.9rem;
+            margin-bottom: 0.5rem;
+            color: var(--text-gray);
+        }
+
+        .progress-bar {
+            height: 6px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 3px;
+            margin-bottom: 0.5rem;
+            overflow: hidden;
+        }
+
+        .progress {
+            height: 100%;
+            width: 0%;
+            background: var(--red-gradient);
+            border-radius: 3px;
+        }
+
+        .upgrade-btn, .settings-btn {
+            width: 100%;
+            padding: 0.8rem;
+            border-radius: 8px;
+            border: none;
+            color: white;
+            font-weight: 600;
+            cursor: pointer;
+            margin-bottom: 0.5rem;
+            transition: all 0.3s ease;
+        }
+
+        .upgrade-btn {
+            background: var(--red-gradient);
+        }
+
+        .settings-btn {
+            background: rgba(255, 255, 255, 0.1);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+        }
+
+        .upgrade-btn:hover, .settings-btn:hover {
+            transform: translateY(-2px);
+        }
+
+        /* Main Content */
+        .main-content {
+            flex: 1;
+            margin-left: 280px;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+
+        .chat-header {
+            padding: 1rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: rgba(5, 5, 5, 0.5);
+            backdrop-filter: blur(15px);
+            border-bottom: 1px solid rgba(255, 51, 51, 0.1);
+        }
+
+        .header-title {
+            font-size: 1.2rem;
+            font-weight: 600;
+        }
+
+        .chat-area {
+            flex: 1;
+            padding: 1.5rem;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1.5rem;
+            align-content: flex-start;
+        }
+
+        .ai-column {
+            background: var(--glass-bg);
+            backdrop-filter: blur(15px);
+            border: 1px solid var(--glass-border);
+            border-radius: 12px;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+            transition: all 0.3s ease;
+        }
+
+        .ai-column:hover {
+            border-color: rgba(255, 51, 51, 0.4);
+            box-shadow: var(--red-glow);
+        }
+
+        .column-header {
+            padding: 1rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: rgba(255, 51, 51, 0.1);
+            border-bottom: 1px solid var(--glass-border);
+        }
+
+        .ai-title {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-weight: 600;
+        }
+
+        .ai-icon {
+            width: 24px;
+            height: 24px;
+            border-radius: 50%;
+            background: var(--red-gradient);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.8rem;
+        }
+
+        .chat-window {
+            flex: 1;
+            padding: 1rem;
+            overflow-y: auto;
+            max-height: 500px;
+        }
+
+        /* Custom scrollbar */
+        .chat-window::-webkit-scrollbar {
+            width: 6px;
+        }
+
+        .chat-window::-webkit-scrollbar-track {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 3px;
+        }
+
+        .chat-window::-webkit-scrollbar-thumb {
+            background: var(--red-gradient);
+            border-radius: 3px;
+        }
+
+        .message {
+            margin-bottom: 1rem;
+        }
+
+        .user-message {
+            text-align: right;
+            margin-left: 20%;
+        }
+
+        .user-text {
+            display: inline-block;
+            background: rgba(255, 51, 51, 0.2);
+            padding: 0.6rem 1rem;
+            border-radius: 12px 12px 0 12px;
+        }
+
+        .ai-response {
+            display: flex;
+            gap: 0.8rem;
+            margin-top: 1rem;
+        }
+
+        .ai-avatar {
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            background: var(--red-gradient);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+        }
+
+        .response-text {
+            background: rgba(255, 255, 255, 0.05);
+            padding: 0.8rem;
+            border-radius: 0 12px 12px 12px;
+            flex: 1;
+        }
+
+        .feedback {
+            display: flex;
+            gap: 0.5rem;
+            margin-top: 0.5rem;
+            padding-left: 40px;
+        }
+
+        .feedback-btn {
+            background: rgba(255, 255, 255, 0.1);
+            border: none;
+            width: 28px;
+            height: 28px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            color: var(--text-gray);
+            transition: all 0.3s ease;
+        }
+
+        .feedback-btn:hover {
+            background: rgba(255, 51, 51, 0.2);
+            color: white;
+        }
+
+        /* Input Area */
+        .input-area {
+            padding: 1.5rem;
+            background: rgba(5, 5, 5, 0.5);
+            backdrop-filter: blur(15px);
+            border-top: 1px solid rgba(255, 51, 51, 0.1);
+        }
+
+        .input-container {
+            display: flex;
+            align-items: center;
+            background: var(--glass-bg);
+            backdrop-filter: blur(15px);
+            border: 1px solid var(--glass-border);
+            border-radius: 12px;
+            padding: 0.5rem 1rem;
+            transition: all 0.3s ease;
+        }
+
+        .input-container:focus-within {
+            border-color: rgba(255, 51, 51, 0.5);
+            box-shadow: var(--red-glow);
+        }
+
+        .input-icons {
+            display: flex;
+            gap: 0.8rem;
+        }
+
+        .icon-btn {
+            background: transparent;
+            border: none;
+            color: var(--text-gray);
+            cursor: pointer;
+            font-size: 1.2rem;
+            transition: all 0.3s ease;
+        }
+
+        .icon-btn:hover {
+            color: white;
+        }
+
+        input[type="text"] {
+            flex: 1;
+            background: transparent;
+            border: none;
+            padding: 1rem;
+            color: var(--text-white);
+            font-size: 1rem;
+            outline: none;
+        }
+
+        input[type="text"]::placeholder {
+            color: var(--text-gray);
+        }
+
+        .send-btn {
+            background: var(--red-gradient);
+            border: none;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .send-btn:hover {
+            transform: scale(1.05);
+            box-shadow: 0 0 15px rgba(255, 51, 51, 0.5);
+        }
+
+        /* Responsive Design */
+        @media (max-width: 1200px) {
+            .chat-area {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 900px) {
+            .sidebar {
+                transform: translateX(-100%);
+                transition: transform 0.3s ease;
+                width: 260px;
+            }
+            
+            .sidebar.active {
+                transform: translateX(0);
+            }
+            
+            .main-content {
+                margin-left: 0;
+            }
+            
+            .menu-toggle {
+                display: block;
+                position: fixed;
+                top: 1rem;
+                left: 1rem;
+                z-index: 200;
+                background: var(--red-gradient);
+                width: 40px;
+                height: 40px;
+                border-radius: 50%;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                color: white;
+                cursor: pointer;
+                box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+            }
+        }
+
+        @media (max-width: 600px) {
+            .chat-area {
+                grid-template-columns: 1fr;
+            }
+            
+            .ai-column {
+                min-width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Sidebar -->
+    <div class="sidebar">
+        <div class="logo">AI Madness</div>
+        <button class="new-chat-btn"><i class="fas fa-plus"></i> New Chat</button>
+        
+        <div class="ai-models">
+            <div class="ai-model">
+                <span class="model-name">ChatGPT 4</span>
+                <label class="toggle-switch">
+                    <input type="checkbox" checked>
+                    <span class="slider"></span>
+                </label>
+            </div>
+            <div class="ai-model">
+                <span class="model-name">Gemini 2.5 Pro</span>
+                <label class="toggle-switch">
+                    <input type="checkbox" checked>
+                    <span class="slider"></span>
+                </label>
+            </div>
+            <div class="ai-model">
+                <span class="model-name">DeepSeek</span>
+                <label class="toggle-switch">
+                    <input type="checkbox">
+                    <span class="slider"></span>
+                </label>
+            </div>
+            <div class="ai-model">
+                <span class="model-name">Claude 4</span>
+                <label class="toggle-switch">
+                    <input type="checkbox" checked>
+                    <span class="slider"></span>
+                </label>
+            </div>
+            <div class="ai-model">
+                <span class="model-name">Perplexity</span>
+                <label class="toggle-switch">
+                    <input type="checkbox">
+                    <span class="slider"></span>
+                </label>
+            </div>
+            <div class="ai-model">
+                <span class="model-name">Llama 3.3</span>
+                <label class="toggle-switch">
+                    <input type="checkbox">
+                    <span class="slider"></span>
+                </label>
+            </div>
+        </div>
+        
+        <div class="bottom-section">
+            <div class="projects">
+                <div class="project-text">
+                    <i class="fas fa-folder"></i>
+                    <span>Projects</span>
+                </div>
+                <span class="badge">3</span>
+            </div>
+            
+            <div class="plan">
+                <div class="plan-text">Free Plan - 0/5 messages used</div>
+                <div class="progress-bar">
+                    <div class="progress"></div>
+                </div>
+            </div>
+            
+            <button class="upgrade-btn">↗ Upgrade Plan</button>
+            <button class="settings-btn"><i class="fas fa-cog"></i> Settings</button>
+        </div>
+    </div>
+    
+    <div class="menu-toggle">
+        <i class="fas fa-bars"></i>
+    </div>
+
+    <!-- Main Content -->
+    <div class="main-content">
+        <div class="chat-header">
+            <div class="header-title">AI Comparison Dashboard</div>
+        </div>
+        
+        <div class="chat-area">
+            <!-- ChatGPT Column -->
+            <div class="ai-column">
+                <div class="column-header">
+                    <div class="ai-title">
+                        <div class="ai-icon"><i class="fas fa-brain"></i></div>
+                        <span>ChatGPT 4</span>
+                    </div>
+                    <label class="toggle-switch">
+                        <input type="checkbox" checked>
+                        <span class="slider"></span>
+                    </label>
+                </div>
+                <div class="chat-window">
+                    <div class="message">
+                        <div class="user-message">
+                            <div class="user-text">What's the future of AI?</div>
+                        </div>
+                        <div class="ai-response">
+                            <div class="ai-avatar">C</div>
+                            <div class="response-text">
+                                The future of AI is expected to involve more advanced natural language understanding, better reasoning capabilities, and increased integration into daily life through various applications...
+                            </div>
+                        </div>
+                        <div class="feedback">
+                            <button class="feedback-btn"><i class="fas fa-thumbs-up"></i></button>
+                            <button class="feedback-btn"><i class="fas fa-thumbs-down"></i></button>
+                            <button class="feedback-btn"><i class="fas fa-copy"></i></button>
+                            <button class="feedback-btn"><i class="fas fa-share"></i></button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Gemini Column -->
+            <div class="ai-column">
+                <div class="column-header">
+                    <div class="ai-title">
+                        <div class="ai-icon"><i class="fas fa-robot"></i></div>
+                        <span>Gemini 2.5 Pro</span>
+                    </div>
+                    <label class="toggle-switch">
+                        <input type="checkbox" checked>
+                        <span class="slider"></span>
+                    </label>
+                </div>
+                <div class="chat-window">
+                    <div class="message">
+                        <div class="user-message">
+                            <div class="user-text">What's the future of AI?</div>
+                        </div>
+                        <div class="ai-response">
+                            <div class="ai-avatar">G</div>
+                            <div class="response-text">
+                                AI will continue to evolve with multimodal capabilities, combining text, image, and audio processing. We'll see more personalized AI assistants that can handle complex tasks across different domains...
+                            </div>
+                        </div>
+                        <div class="feedback">
+                            <button class="feedback-btn"><i class="fas fa-thumbs-up"></i></button>
+                            <button class="feedback-btn"><i class="fas fa-thumbs-down"></i></button>
+                            <button class="feedback-btn"><i class="fas fa-copy"></i></button>
+                            <button class="feedback-btn"><i class="fas fa-share"></i></button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Claude Column -->
+            <div class="ai-column">
+                <div class="column-header">
+                    <div class="ai-title">
+                        <div class="ai-icon"><i class="fas fa-code"></i></div>
+                        <span>Claude 4</span>
+                    </div>
+                    <label class="toggle-switch">
+                        <input type="checkbox" checked>
+                        <span class="slider"></span>
+                    </label>
+                </div>
+                <div class="chat-window">
+                    <div class="message">
+                        <div class="user-message">
+                            <div class="user-text">What's the future of AI?</div>
+                        </div>
+                        <div class="ai-response">
+                            <div class="ai-avatar">C</div>
+                            <div class="response-text">
+                                The future of AI will likely focus on developing more ethical, transparent, and aligned AI systems. There will be increased emphasis on AI safety and reducing biases in models...
+                            </div>
+                        </div>
+                        <div class="feedback">
+                            <button class="feedback-btn"><i class="fas fa-thumbs-up"></i></button>
+                            <button class="feedback-btn"><i class="fas fa-thumbs-down"></i></button>
+                            <button class="feedback-btn"><i class="fas fa-copy"></i></button>
+                            <button class="feedback-btn"><i class="fas fa-share"></i></button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="input-area">
+            <div class="input-container">
+                <div class="input-icons">
+                    <button class="icon-btn"><i class="fas fa-image"></i></button>
+                    <button class="icon-btn"><i class="fas fa-upload"></i></button>
+                </div>
+                <input type="text" placeholder="Ask me anything...">
+                <button class="icon-btn"><i class="fas fa-microphone"></i></button>
+                <button class="send-btn"><i class="fas fa-paper-plane"></i></button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Toggle sidebar on mobile
+        document.querySelector('.menu-toggle').addEventListener('click', function() {
+            document.querySelector('.sidebar').classList.toggle('active');
+        });
+        
+        // Simulate sending a message
+        document.querySelector('.send-btn').addEventListener('click', function() {
+            const input = document.querySelector('input[type="text"]');
+            const message = input.value.trim();
+            
+            if (message) {
+                // In a real app, this would send the message to all active AIs
+                // and display their responses
+                input.value = '';
+                
+                // For demo purposes, we'll just show an alert
+                alert(`Message sent to all active AIs: "${message}"`);
+            }
+        });
+        
+        // Allow pressing Enter to send
+        document.querySelector('input[type="text"]').addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') {
+                document.querySelector('.send-btn').click();
+            }
+        });
+        
+        // Toggle AI columns when switches are toggled
+        const toggleSwitches = document.querySelectorAll('.toggle-switch input');
+        toggleSwitches.forEach(switchEl => {
+            switchEl.addEventListener('change', function() {
+                // In a real app, this would show/hide the corresponding AI column
+                // For this demo, we'll just log the change
+                const aiName = this.closest('.ai-model').querySelector('.model-name').textContent;
+                console.log(`${aiName} is now ${this.checked ? 'enabled' : 'disabled'}`);
+            });
+        });
+    </script>
+</body>
+</html>
