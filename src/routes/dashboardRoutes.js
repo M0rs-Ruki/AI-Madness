@@ -5,7 +5,7 @@ const router = express.Router();
 
 
 
-router.get('/dashboard', isloggedin, (req, res) => {
+router.get('/dashboard', (req, res) => { // add is longgedin 
     res.render('dashboard');
 })
 

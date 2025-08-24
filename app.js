@@ -38,6 +38,8 @@ app.set('view engine', 'ejs');
 
 // Routes
 import index from "./src/routes/indexRoutes.js";
+import dashboard from './src/routes/dashboardRoutes.js'
 
 
 app.use('/', index);
+app.use('/user', dashboard);
