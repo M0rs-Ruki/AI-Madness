@@ -1,18 +1,18 @@
 
-
 import mongoose from "mongoose";
+import dotenv from "dotenv";
+dotenv.config({path: './.env'});
 
-async function connectDB() {
-  try {
-    await mongoose.connect("mongodb://127.0.0.1:27017/AiMadness", {
-      useNewUrlParser: true,
-      useUnifiedTopology: true,
-    });
-    console.log("✅ MongoDB connected");
-  } catch (err) {
-    console.error("❌ Connection error:", err);
-    process.exit(1);
-  }
+const connectDB = async () => {
+    try {
+        const connectionInstance = await mongoose.connect
+            (`${process.env.MONGO_URI}/${process.env.DB_NAME}`);
+        console.log(`MongoDB connected: ${connectionInstance.connection.host}`);
+        
+    } catch (error) {
+        console.log(`MongoDB connection error: ${error.message}`);
+        process.exit(1);
+    }
 }
 
 export default connectDB;
