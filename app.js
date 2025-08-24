@@ -40,4 +40,4 @@ app.set('view engine', 'ejs');
 import index from "./src/routes/indexRoutes.js";
 
 
-app.get('/', index);
+app.use('/', index);

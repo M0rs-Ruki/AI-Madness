@@ -16,5 +16,8 @@ router.get('/register', (req, res) => {
 })
 
 
+import { register } from '../controllers/authController.js';
+
+router.post('/registerData', register);
 
 export default router;
