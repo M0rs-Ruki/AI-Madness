@@ -1,16 +1,20 @@
 <!DOCTYPE html>
 <html lang="en" class="scroll-smooth">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>AI Madness - Access All Premium AI Models in One Place</title>
-    <meta name="description" content="Why pay for multiple AI subscriptions? Get ChatGPT, Claude, Gemini, DeepSeek and more — all for one low price.">
-    
+    <meta name="description"
+        content="Why pay for multiple AI subscriptions? Get ChatGPT, Claude, Gemini, DeepSeek and more — all for one low price.">
+
     <!-- Preconnect for performance -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
-    
+    <link
+        href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;600;700&family=Inter:wght@400;500;600&display=swap"
+        rel="stylesheet">
+
     <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
@@ -90,11 +94,14 @@
     </script>
     <link rel="stylesheet" href="/styles/index.css">
 </head>
+
 <body class="font-inter overflow-x-hidden">
     <!-- Background Effects -->
     <div class="fixed inset-0 pointer-events-none">
         <div class="absolute inset-0 bg-gradient-radial opacity-30"></div>
-        <div class="absolute inset-0" style="background-image: radial-gradient(circle at 1px 1px, rgba(255,59,48,0.1) 1px, transparent 0); background-size: 50px 50px;"></div>
+        <div class="absolute inset-0"
+            style="background-image: radial-gradient(circle at 1px 1px, rgba(255,59,48,0.1) 1px, transparent 0); background-size: 50px 50px;">
+        </div>
         <div id="particles" class="absolute inset-0"></div>
     </div>
 
@@ -105,36 +112,44 @@
                 <div class="flex-shrink-0">
                     <h1 class="text-2xl font-space font-bold text-white">AI Madness</h1>
                 </div>
-                
+
                 <!-- Desktop navigation remains the same -->
                 <div class="hidden md:block">
                     <div class="ml-10 flex items-baseline space-x-8">
-                        <a href="#features" class="text-gray-300 hover:text-white transition-colors duration-200">Features</a>
-                        <a href="#pricing" class="text-gray-300 hover:text-white transition-colors duration-200">Pricing</a>
+                        <a href="#features"
+                            class="text-gray-300 hover:text-white transition-colors duration-200">Features</a>
+                        <a href="#pricing"
+                            class="text-gray-300 hover:text-white transition-colors duration-200">Pricing</a>
                         <a href="#faq" class="text-gray-300 hover:text-white transition-colors duration-200">FAQ</a>
                         <a href="/login" class="text-gray-300 hover:text-white transition-colors duration-200">Login</a>
                     </div>
                 </div>
-                
+
                 <div class="flex items-center space-x-4">
-                    <a href="/user/dashboard" class="btn-primary px-4 md:px-6 py-2 rounded-2xl text-white font-medium text-sm md:text-base">Get Started Now</a>
+                    <a href="/user/dashboard"
+                        class="btn-primary px-4 md:px-6 py-2 rounded-2xl text-white font-medium text-sm md:text-base">Get
+                        Started Now</a>
                     <!-- Added mobile menu button -->
                     <button id="mobileMenuBtn" class="md:hidden text-white p-2">
                         <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M4 6h16M4 12h16M4 18h16"></path>
                         </svg>
                     </button>
                 </div>
             </div>
         </div>
-        
+
         <!-- Added mobile menu -->
         <div id="mobileMenu" class="mobile-menu fixed top-16 left-0 w-full h-screen glass-strong md:hidden z-40">
             <div class="px-4 py-6 space-y-4">
-                <a href="#features" class="block text-gray-300 hover:text-white transition-colors duration-200 py-2">Features</a>
-                <a href="#pricing" class="block text-gray-300 hover:text-white transition-colors duration-200 py-2">Pricing</a>
+                <a href="#features"
+                    class="block text-gray-300 hover:text-white transition-colors duration-200 py-2">Features</a>
+                <a href="#pricing"
+                    class="block text-gray-300 hover:text-white transition-colors duration-200 py-2">Pricing</a>
                 <a href="#faq" class="block text-gray-300 hover:text-white transition-colors duration-200 py-2">FAQ</a>
-                <a href="#login" class="block text-gray-300 hover:text-white transition-colors duration-200 py-2">Login</a>
+                <a href="/login"
+                    class="block text-gray-300 hover:text-white transition-colors duration-200 py-2">Login</a>
             </div>
         </div>
     </nav>
@@ -148,22 +163,26 @@
                         Access All Premium AI Models in One Place
                     </h1>
                     <p class="text-lg sm:text-xl text-gray-300 mb-8 leading-relaxed">
-                        Why pay for multiple AI subscriptions? Get ChatGPT, Claude, Gemini, DeepSeek and more — all for one low price.
+                        Why pay for multiple AI subscriptions? Get ChatGPT, Claude, Gemini, DeepSeek and more — all for
+                        one low price.
                     </p>
                     <div class="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
-                        <a href="/dashboard" class="btn-primary px-6 sm:px-8 py-3 sm:py-4 rounded-2xl text-white font-semibold text-base sm:text-lg animate-pulse-slow">
+                        <a href="/user/dashboard"
+                            class="btn-primary px-6 sm:px-8 py-3 sm:py-4 rounded-2xl text-white font-semibold text-base sm:text-lg animate-pulse-slow">
                             Start Your AI Journey
                         </a>
-                        <a href="#features" class="btn-secondary px-6 sm:px-8 py-3 sm:py-4 rounded-2xl text-white font-semibold text-base sm:text-lg">
+                        <a href="#features"
+                            class="btn-secondary px-6 sm:px-8 py-3 sm:py-4 rounded-2xl text-white font-semibold text-base sm:text-lg">
                             See How It Works
                         </a>
                     </div>
                 </div>
-                
+
                 <div class="relative animate-float">
                     <div class="glass-strong rounded-3xl p-6 sm:p-8">
                         <div class="text-center mb-6">
-                            <h3 class="text-lg sm:text-xl font-space font-semibold text-white mb-2">One Prompt → Multiple AI Responses</h3>
+                            <h3 class="text-lg sm:text-xl font-space font-semibold text-white mb-2">One Prompt →
+                                Multiple AI Responses</h3>
                         </div>
                         <div class="space-y-4">
                             <!-- Updated AI responses with proper logos -->
@@ -171,38 +190,45 @@
                                 <div class="flex items-center space-x-3">
                                     <div class="ai-logo bg-green-600">
                                         <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
-                                            <path d="M22.2819 9.8211a5.9847 5.9847 0 0 0-.5157-4.9108 6.0462 6.0462 0 0 0-6.5098-2.9A6.0651 6.0651 0 0 0 4.9807 4.1818a5.9847 5.9847 0 0 0-3.9977 2.9 6.0462 6.0462 0 0 0 .7427 7.0966 5.98 5.98 0 0 0 .511 4.9107 6.051 6.051 0 0 0 6.5146 2.9001A5.9847 5.9847 0 0 0 13.2599 24a6.0557 6.0557 0 0 0 5.7718-4.2058 5.9894 5.9894 0 0 0 3.9977-2.9001 6.0557 6.0557 0 0 0-.7475-7.0729zm-9.022 12.6081a4.4755 4.4755 0 0 1-2.8764-1.0408l.1419-.0804 4.7783-2.7582a.7948.7948 0 0 0 .3927-.6813v-6.7369l2.02 1.1686a.071.071 0 0 1 .038.052v5.5826a4.504 4.504 0 0 1-4.4945 4.4944zm-9.6607-4.1254a4.4708 4.4708 0 0 1-.5346-3.0137l.142-.0852 4.783-2.7582a.7712.7712 0 0 0 .7806 0l5.8428 3.3685v2.3324a.0804.0804 0 0 1-.0332.0615L9.74 19.9502a4.4992 4.4992 0 0 1-6.1408-1.6464zM2.3408 7.8956a4.485 4.485 0 0 1 2.3655-1.9728V11.6a.7664.7664 0 0 0 .3879.6765l5.8144 3.3543-2.0201 1.1685a.0757.0757 0 0 1-.071 0l-4.8303-2.7865A4.504 4.504 0 0 1 2.3408 7.872zm16.5963 3.8558L13.1038 8.364 15.1192 7.2a.0757.0757 0 0 1 .071 0l4.8303 2.7913a4.4944 4.4944 0 0 1-.6765 8.1042v-5.6772a.79.79 0 0 0-.407-.667zm2.0107-3.0231l-.142-.0852-4.7735-2.7818a.7759.7759 0 0 0-.7854 0L9.409 9.2297V6.8974a.0662.0662 0 0 1 .0284-.0615l4.8303-2.7866a4.4992 4.4992 0 0 1 6.6802 4.66zM8.3065 12.863l-2.02-1.1638a.0804.0804 0 0 1-.038-.0567V6.0742a4.4992 4.4992 0 0 1 7.3757-3.4537l-.142.0805L8.704 5.459a.7948.7948 0 0 0-.3927.6813zm1.0976-2.3654l2.602-1.4998 2.6069 1.4998v2.9994l-2.5974 1.4997-2.6067-1.4997Z"/>
+                                            <path
+                                                d="M22.2819 9.8211a5.9847 5.9847 0 0 0-.5157-4.9108 6.0462 6.0462 0 0 0-6.5098-2.9A6.0651 6.0651 0 0 0 4.9807 4.1818a5.9847 5.9847 0 0 0-3.9977 2.9 6.0462 6.0462 0 0 0 .7427 7.0966 5.98 5.98 0 0 0 .511 4.9107 6.051 6.051 0 0 0 6.5146 2.9001A5.9847 5.9847 0 0 0 13.2599 24a6.0557 6.0557 0 0 0 5.7718-4.2058 5.9894 5.9894 0 0 0 3.9977-2.9001 6.0557 6.0557 0 0 0-.7475-7.0729zm-9.022 12.6081a4.4755 4.4755 0 0 1-2.8764-1.0408l.1419-.0804 4.7783-2.7582a.7948.7948 0 0 0 .3927-.6813v-6.7369l2.02 1.1686a.071.071 0 0 1 .038.052v5.5826a4.504 4.504 0 0 1-4.4945 4.4944zm-9.6607-4.1254a4.4708 4.4708 0 0 1-.5346-3.0137l.142-.0852 4.783-2.7582a.7712.7712 0 0 0 .7806 0l5.8428 3.3685v2.3324a.0804.0804 0 0 1-.0332.0615L9.74 19.9502a4.4992 4.4992 0 0 1-6.1408-1.6464zM2.3408 7.8956a4.485 4.485 0 0 1 2.3655-1.9728V11.6a.7664.7664 0 0 0 .3879.6765l5.8144 3.3543-2.0201 1.1685a.0757.0757 0 0 1-.071 0l-4.8303-2.7865A4.504 4.504 0 0 1 2.3408 7.872zm16.5963 3.8558L13.1038 8.364 15.1192 7.2a.0757.0757 0 0 1 .071 0l4.8303 2.7913a4.4944 4.4944 0 0 1-.6765 8.1042v-5.6772a.79.79 0 0 0-.407-.667zm2.0107-3.0231l-.142-.0852-4.7735-2.7818a.7759.7759 0 0 0-.7854 0L9.409 9.2297V6.8974a.0662.0662 0 0 1 .0284-.0615l4.8303-2.7866a4.4992 4.4992 0 0 1 6.6802 4.66zM8.3065 12.863l-2.02-1.1638a.0804.0804 0 0 1-.038-.0567V6.0742a4.4992 4.4992 0 0 1 7.3757-3.4537l-.142.0805L8.704 5.459a.7948.7948 0 0 0-.3927.6813zm1.0976-2.3654l2.602-1.4998 2.6069 1.4998v2.9994l-2.5974 1.4997-2.6067-1.4997Z" />
                                         </svg>
                                     </div>
                                     <div class="flex-1 min-w-0">
                                         <p class="text-sm text-gray-300">ChatGPT-4</p>
-                                        <p class="text-white text-sm sm:text-base truncate">The future of AI is collaborative...</p>
+                                        <p class="text-white text-sm sm:text-base truncate">The future of AI is
+                                            collaborative...</p>
                                     </div>
                                 </div>
                             </div>
-                            <div class="glass rounded-2xl p-4 hover-tilt animate-scale-in" style="animation-delay: 0.1s">
+                            <div class="glass rounded-2xl p-4 hover-tilt animate-scale-in"
+                                style="animation-delay: 0.1s">
                                 <div class="flex items-center space-x-3">
                                     <div class="ai-logo bg-orange-600">
                                         <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
-                                            <path d="M14.769 2.434A1.5 1.5 0 0 1 16.5 3.75v16.5a1.5 1.5 0 0 1-1.731 1.316L12 21l-2.769.566A1.5 1.5 0 0 1 7.5 20.25V3.75a1.5 1.5 0 0 1 1.731-1.316L12 3l2.769-.566z"/>
+                                            <path
+                                                d="M14.769 2.434A1.5 1.5 0 0 1 16.5 3.75v16.5a1.5 1.5 0 0 1-1.731 1.316L12 21l-2.769.566A1.5 1.5 0 0 1 7.5 20.25V3.75a1.5 1.5 0 0 1 1.731-1.316L12 3l2.769-.566z" />
                                         </svg>
                                     </div>
                                     <div class="flex-1 min-w-0">
                                         <p class="text-sm text-gray-300">Claude</p>
-                                        <p class="text-white text-sm sm:text-base truncate">AI collaboration represents...</p>
+                                        <p class="text-white text-sm sm:text-base truncate">AI collaboration
+                                            represents...</p>
                                     </div>
                                 </div>
                             </div>
-                            <div class="glass rounded-2xl p-4 hover-tilt animate-scale-in" style="animation-delay: 0.2s">
+                            <div class="glass rounded-2xl p-4 hover-tilt animate-scale-in"
+                                style="animation-delay: 0.2s">
                                 <div class="flex items-center space-x-3">
                                     <div class="ai-logo bg-blue-600">
                                         <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
-                                            <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/>
+                                            <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5" />
                                         </svg>
                                     </div>
                                     <div class="flex-1 min-w-0">
                                         <p class="text-sm text-gray-300">Gemini</p>
-                                        <p class="text-white text-sm sm:text-base truncate">Multi-model AI systems...</p>
+                                        <p class="text-white text-sm sm:text-base truncate">Multi-model AI systems...
+                                        </p>
                                     </div>
                                 </div>
                             </div>
@@ -222,7 +248,8 @@
                     <div class="flex items-center space-x-2 animate-fade-in">
                         <div class="ai-logo bg-green-600">
                             <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
-                                <path d="M22.2819 9.8211a5.9847 5.9847 0 0 0-.5157-4.9108 6.0462 6.0462 0 0 0-6.5098-2.9A6.0651 6.0651 0 0 0 4.9807 4.1818a5.9847 5.9847 0 0 0-3.9977 2.9 6.0462 6.0462 0 0 0 .7427 7.0966 5.98 5.98 0 0 0 .511 4.9107 6.051 6.051 0 0 0 6.5146 2.9001A5.9847 5.9847 0 0 0 13.2599 24a6.0557 6.0557 0 0 0 5.7718-4.2058 5.9894 5.9894 0 0 0 3.9977-2.9001 6.0557 6.0557 0 0 0-.7475-7.0729zm-9.022 12.6081a4.4755 4.4755 0 0 1-2.8764-1.0408l.1419-.0804 4.7783-2.7582a.7948.7948 0 0 0 .3927-.6813v-6.7369l2.02 1.1686a.071.071 0 0 1 .038.052v5.5826a4.504 4.504 0 0 1-4.4945 4.4944zm-9.6607-4.1254a4.4708 4.4708 0 0 1-.5346-3.0137l.142-.0852 4.783-2.7582a.7712.7712 0 0 0 .7806 0l5.8428 3.3685v2.3324a.0804.0804 0 0 1-.0332.0615L9.74 19.9502a4.4992 4.4992 0 0 1-6.1408-1.6464zM2.3408 7.8956a4.485 4.485 0 0 1 2.3655-1.9728V11.6a.7664.7664 0 0 0 .3879.6765l5.8144 3.3543-2.0201 1.1685a.0757.0757 0 0 1-.071 0l-4.8303-2.7865A4.504 4.504 0 0 1 2.3408 7.872zm16.5963 3.8558L13.1038 8.364 15.1192 7.2a.0757.0757 0 0 1 .071 0l4.8303 2.7913a4.4944 4.4944 0 0 1-.6765 8.1042v-5.6772a.79.79 0 0 0-.407-.667zm2.0107-3.0231l-.142-.0852-4.7735-2.7818a.7759.7759 0 0 0-.7854 0L9.409 9.2297V6.8974a.0662.0662 0 0 1 .0284-.0615l4.8303-2.7866a4.4992 4.4992 0 0 1 6.6802 4.66zM8.3065 12.863l-2.02-1.1638a.0804.0804 0 0 1-.038-.0567V6.0742a4.4992 4.4992 0 0 1 7.3757-3.4537l-.142.0805L8.704 5.459a.7948.7948 0 0 0-.3927.6813zm1.0976-2.3654l2.602-1.4998 2.6069 1.4998v2.9994l-2.5974 1.4997-2.6067-1.4997Z"/>
+                                <path
+                                    d="M22.2819 9.8211a5.9847 5.9847 0 0 0-.5157-4.9108 6.0462 6.0462 0 0 0-6.5098-2.9A6.0651 6.0651 0 0 0 4.9807 4.1818a5.9847 5.9847 0 0 0-3.9977 2.9 6.0462 6.0462 0 0 0 .7427 7.0966 5.98 5.98 0 0 0 .511 4.9107 6.051 6.051 0 0 0 6.5146 2.9001A5.9847 5.9847 0 0 0 13.2599 24a6.0557 6.0557 0 0 0 5.7718-4.2058 5.9894 5.9894 0 0 0 3.9977-2.9001 6.0557 6.0557 0 0 0-.7475-7.0729zm-9.022 12.6081a4.4755 4.4755 0 0 1-2.8764-1.0408l.1419-.0804 4.7783-2.7582a.7948.7948 0 0 0 .3927-.6813v-6.7369l2.02 1.1686a.071.071 0 0 1 .038.052v5.5826a4.504 4.504 0 0 1-4.4945 4.4944zm-9.6607-4.1254a4.4708 4.4708 0 0 1-.5346-3.0137l.142-.0852 4.783-2.7582a.7712.7712 0 0 0 .7806 0l5.8428 3.3685v2.3324a.0804.0804 0 0 1-.0332.0615L9.74 19.9502a4.4992 4.4992 0 0 1-6.1408-1.6464zM2.3408 7.8956a4.485 4.485 0 0 1 2.3655-1.9728V11.6a.7664.7664 0 0 0 .3879.6765l5.8144 3.3543-2.0201 1.1685a.0757.0757 0 0 1-.071 0l-4.8303-2.7865A4.504 4.504 0 0 1 2.3408 7.872zm16.5963 3.8558L13.1038 8.364 15.1192 7.2a.0757.0757 0 0 1 .071 0l4.8303 2.7913a4.4944 4.4944 0 0 1-.6765 8.1042v-5.6772a.79.79 0 0 0-.407-.667zm2.0107-3.0231l-.142-.0852-4.7735-2.7818a.7759.7759 0 0 0-.7854 0L9.409 9.2297V6.8974a.0662.0662 0 0 1 .0284-.0615l4.8303-2.7866a4.4992 4.4992 0 0 1 6.6802 4.66zM8.3065 12.863l-2.02-1.1638a.0804.0804 0 0 1-.038-.0567V6.0742a4.4992 4.4992 0 0 1 7.3757-3.4537l-.142.0805L8.704 5.459a.7948.7948 0 0 0-.3927.6813zm1.0976-2.3654l2.602-1.4998 2.6069 1.4998v2.9994l-2.5974 1.4997-2.6067-1.4997Z" />
                             </svg>
                         </div>
                         <span class="text-xs sm:text-sm text-gray-400">ChatGPT</span>
@@ -230,7 +257,8 @@
                     <div class="flex items-center space-x-2 animate-fade-in" style="animation-delay: 0.1s">
                         <div class="ai-logo bg-orange-600">
                             <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
-                                <path d="M14.769 2.434A1.5 1.5 0 0 1 16.5 3.75v16.5a1.5 1.5 0 0 1-1.731 1.316L12 21l-2.769.566A1.5 1.5 0 0 1 7.5 20.25V3.75a1.5 1.5 0 0 1 1.731-1.316L12 3l2.769-.566z"/>
+                                <path
+                                    d="M14.769 2.434A1.5 1.5 0 0 1 16.5 3.75v16.5a1.5 1.5 0 0 1-1.731 1.316L12 21l-2.769.566A1.5 1.5 0 0 1 7.5 20.25V3.75a1.5 1.5 0 0 1 1.731-1.316L12 3l2.769-.566z" />
                             </svg>
                         </div>
                         <span class="text-xs sm:text-sm text-gray-400">Claude</span>
@@ -238,7 +266,7 @@
                     <div class="flex items-center space-x-2 animate-fade-in" style="animation-delay: 0.2s">
                         <div class="ai-logo bg-blue-600">
                             <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
-                                <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/>
+                                <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5" />
                             </svg>
                         </div>
                         <span class="text-xs sm:text-sm text-gray-400">Gemini</span>
@@ -246,7 +274,8 @@
                     <div class="flex items-center space-x-2 animate-fade-in" style="animation-delay: 0.3s">
                         <div class="ai-logo bg-red-600">
                             <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
-                                <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/>
+                                <path
+                                    d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z" />
                             </svg>
                         </div>
                         <span class="text-xs sm:text-sm text-gray-400">DeepSeek</span>
@@ -254,7 +283,8 @@
                     <div class="flex items-center space-x-2 animate-fade-in" style="animation-delay: 0.4s">
                         <div class="ai-logo bg-purple-600">
                             <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
-                                <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
+                                <path
+                                    d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" />
                             </svg>
                         </div>
                         <span class="text-xs sm:text-sm text-gray-400">Perplexity</span>
@@ -279,70 +309,92 @@
                 <h2 class="text-3xl sm:text-4xl lg:text-5xl font-space font-bold text-white mb-6 animate-slide-up">
                     Why Choose AI Madness?
                 </h2>
-                <p class="text-lg sm:text-xl text-gray-300 max-w-3xl mx-auto animate-slide-up" style="animation-delay: 0.1s">
+                <p class="text-lg sm:text-xl text-gray-300 max-w-3xl mx-auto animate-slide-up"
+                    style="animation-delay: 0.1s">
                     Stop juggling multiple AI subscriptions. Get everything you need in one powerful platform.
                 </p>
             </div>
-            
+
             <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
                 <div class="glass-strong rounded-3xl p-6 sm:p-8 hover-tilt animate-scale-in">
                     <div class="w-12 h-12 bg-red-500/20 rounded-2xl flex items-center justify-center mb-6">
                         <svg class="w-6 h-6 text-red-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path>
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M13 10V3L4 14h7v7l9-11h-7z"></path>
                         </svg>
                     </div>
                     <h3 class="text-xl font-space font-semibold text-white mb-4">Lightning Fast</h3>
-                    <p class="text-gray-300">Get responses from multiple AI models simultaneously. No more waiting or switching between apps.</p>
+                    <p class="text-gray-300">Get responses from multiple AI models simultaneously. No more waiting or
+                        switching between apps.</p>
                 </div>
-                
-                <div class="glass-strong rounded-3xl p-6 sm:p-8 hover-tilt animate-scale-in" style="animation-delay: 0.1s">
+
+                <div class="glass-strong rounded-3xl p-6 sm:p-8 hover-tilt animate-scale-in"
+                    style="animation-delay: 0.1s">
                     <div class="w-12 h-12 bg-red-500/20 rounded-2xl flex items-center justify-center mb-6">
                         <svg class="w-6 h-6 text-red-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1"></path>
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1">
+                            </path>
                         </svg>
                     </div>
                     <h3 class="text-xl font-space font-semibold text-white mb-4">Massive Savings</h3>
-                    <p class="text-gray-300">Save up to 90% compared to individual subscriptions. One price for unlimited access to all models.</p>
+                    <p class="text-gray-300">Save up to 90% compared to individual subscriptions. One price for
+                        unlimited access to all models.</p>
                 </div>
-                
-                <div class="glass-strong rounded-3xl p-6 sm:p-8 hover-tilt animate-scale-in" style="animation-delay: 0.2s">
+
+                <div class="glass-strong rounded-3xl p-6 sm:p-8 hover-tilt animate-scale-in"
+                    style="animation-delay: 0.2s">
                     <div class="w-12 h-12 bg-red-500/20 rounded-2xl flex items-center justify-center mb-6">
                         <svg class="w-6 h-6 text-red-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
                         </svg>
                     </div>
                     <h3 class="text-xl font-space font-semibold text-white mb-4">Always Updated</h3>
-                    <p class="text-gray-300">Access the latest versions of all AI models as soon as they're released. No manual updates needed.</p>
+                    <p class="text-gray-300">Access the latest versions of all AI models as soon as they're released. No
+                        manual updates needed.</p>
                 </div>
-                
-                <div class="glass-strong rounded-3xl p-6 sm:p-8 hover-tilt animate-scale-in" style="animation-delay: 0.3s">
+
+                <div class="glass-strong rounded-3xl p-6 sm:p-8 hover-tilt animate-scale-in"
+                    style="animation-delay: 0.3s">
                     <div class="w-12 h-12 bg-red-500/20 rounded-2xl flex items-center justify-center mb-6">
                         <svg class="w-6 h-6 text-red-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 9l3 3-3 3m5 0h3M5 20h14a2 2 0 002-2V6a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"></path>
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M8 9l3 3-3 3m5 0h3M5 20h14a2 2 0 002-2V6a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z">
+                            </path>
                         </svg>
                     </div>
                     <h3 class="text-xl font-space font-semibold text-white mb-4">Simple Interface</h3>
-                    <p class="text-gray-300">Clean, intuitive design that gets out of your way. Focus on your work, not learning new interfaces.</p>
+                    <p class="text-gray-300">Clean, intuitive design that gets out of your way. Focus on your work, not
+                        learning new interfaces.</p>
                 </div>
-                
-                <div class="glass-strong rounded-3xl p-6 sm:p-8 hover-tilt animate-scale-in" style="animation-delay: 0.4s">
+
+                <div class="glass-strong rounded-3xl p-6 sm:p-8 hover-tilt animate-scale-in"
+                    style="animation-delay: 0.4s">
                     <div class="w-12 h-12 bg-red-500/20 rounded-2xl flex items-center justify-center mb-6">
                         <svg class="w-6 h-6 text-red-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"></path>
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z">
+                            </path>
                         </svg>
                     </div>
                     <h3 class="text-xl font-space font-semibold text-white mb-4">Secure & Private</h3>
-                    <p class="text-gray-300">Your conversations are encrypted and never stored. What you create stays private and secure.</p>
+                    <p class="text-gray-300">Your conversations are encrypted and never stored. What you create stays
+                        private and secure.</p>
                 </div>
-                
-                <div class="glass-strong rounded-3xl p-6 sm:p-8 hover-tilt animate-scale-in" style="animation-delay: 0.5s">
+
+                <div class="glass-strong rounded-3xl p-6 sm:p-8 hover-tilt animate-scale-in"
+                    style="animation-delay: 0.5s">
                     <div class="w-12 h-12 bg-red-500/20 rounded-2xl flex items-center justify-center mb-6">
                         <svg class="w-6 h-6 text-red-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M18.364 5.636l-3.536 3.536m0 5.656l3.536 3.536M9.172 9.172L5.636 5.636m3.536 9.192L5.636 18.364M12 2.25a9.75 9.75 0 109.75 9.75A9.75 9.75 0 0012 2.25z"></path>
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M18.364 5.636l-3.536 3.536m0 5.656l3.536 3.536M9.172 9.172L5.636 5.636m3.536 9.192L5.636 18.364M12 2.25a9.75 9.75 0 109.75 9.75A9.75 9.75 0 0012 2.25z">
+                            </path>
                         </svg>
                     </div>
                     <h3 class="text-xl font-space font-semibold text-white mb-4">24/7 Support</h3>
-                    <p class="text-gray-300">Get help whenever you need it. Our support team is available around the clock to assist you.</p>
+                    <p class="text-gray-300">Get help whenever you need it. Our support team is available around the
+                        clock to assist you.</p>
                 </div>
             </div>
         </div>
@@ -356,26 +408,30 @@
                 <h2 class="text-3xl sm:text-4xl lg:text-5xl font-space font-bold text-white mb-6 animate-slide-up">
                     Simple, Transparent Pricing
                 </h2>
-                <p class="text-lg sm:text-xl text-gray-300 max-w-3xl mx-auto mb-8 animate-slide-up" style="animation-delay: 0.1s">
+                <p class="text-lg sm:text-xl text-gray-300 max-w-3xl mx-auto mb-8 animate-slide-up"
+                    style="animation-delay: 0.1s">
                     One subscription. All AI models. Unlimited usage.
                 </p>
-                
+
                 <!-- Pricing Toggle -->
                 <div class="flex items-center justify-center mb-12">
                     <div class="glass rounded-2xl p-1 flex animate-scale-in" style="animation-delay: 0.2s">
-                        <button id="monthlyBtn" class="px-6 py-2 rounded-xl text-sm font-medium transition-all duration-200 bg-red-500 text-white">
+                        <button id="monthlyBtn"
+                            class="px-6 py-2 rounded-xl text-sm font-medium transition-all duration-200 bg-red-500 text-white">
                             Monthly
                         </button>
-                        <button id="yearlyBtn" class="px-6 py-2 rounded-xl text-sm font-medium transition-all duration-200 text-gray-400">
+                        <button id="yearlyBtn"
+                            class="px-6 py-2 rounded-xl text-sm font-medium transition-all duration-200 text-gray-400">
                             Yearly (Save 50%)
                         </button>
                     </div>
                 </div>
             </div>
-            
+
             <div class="grid lg:grid-cols-2 gap-8 lg:gap-12 items-center">
                 <!-- Pricing Card -->
-                <div class="glass-strong rounded-3xl p-8 sm:p-12 text-center hover-tilt animate-scale-in" style="animation-delay: 0.3s">
+                <div class="glass-strong rounded-3xl p-8 sm:p-12 text-center hover-tilt animate-scale-in"
+                    style="animation-delay: 0.3s">
                     <div class="mb-8">
                         <h3 class="text-2xl font-space font-bold text-white mb-4">AI Madness Pro</h3>
                         <div class="flex items-baseline justify-center mb-2">
@@ -384,71 +440,85 @@
                         </div>
                         <p class="text-gray-400">or ₹999/year (save 50%)</p>
                     </div>
-                    
+
                     <ul class="space-y-4 mb-8 text-left">
                         <li class="flex items-center">
-                            <svg class="w-5 h-5 text-green-400 mr-3 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                            <svg class="w-5 h-5 text-green-400 mr-3 flex-shrink-0" fill="none" stroke="currentColor"
+                                viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M5 13l4 4L19 7"></path>
                             </svg>
                             <span class="text-gray-300">Unlimited access to ChatGPT-4</span>
                         </li>
                         <li class="flex items-center">
-                            <svg class="w-5 h-5 text-green-400 mr-3 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                            <svg class="w-5 h-5 text-green-400 mr-3 flex-shrink-0" fill="none" stroke="currentColor"
+                                viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M5 13l4 4L19 7"></path>
                             </svg>
                             <span class="text-gray-300">Full Claude access</span>
                         </li>
                         <li class="flex items-center">
-                            <svg class="w-5 h-5 text-green-400 mr-3 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                            <svg class="w-5 h-5 text-green-400 mr-3 flex-shrink-0" fill="none" stroke="currentColor"
+                                viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M5 13l4 4L19 7"></path>
                             </svg>
                             <span class="text-gray-300">Google Gemini Pro</span>
                         </li>
                         <li class="flex items-center">
-                            <svg class="w-5 h-5 text-green-400 mr-3 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                            <svg class="w-5 h-5 text-green-400 mr-3 flex-shrink-0" fill="none" stroke="currentColor"
+                                viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M5 13l4 4L19 7"></path>
                             </svg>
                             <span class="text-gray-300">DeepSeek & Perplexity</span>
                         </li>
                         <li class="flex items-center">
-                            <svg class="w-5 h-5 text-green-400 mr-3 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                            <svg class="w-5 h-5 text-green-400 mr-3 flex-shrink-0" fill="none" stroke="currentColor"
+                                viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M5 13l4 4L19 7"></path>
                             </svg>
                             <span class="text-gray-300">Priority support</span>
                         </li>
                         <li class="flex items-center">
-                            <svg class="w-5 h-5 text-green-400 mr-3 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                            <svg class="w-5 h-5 text-green-400 mr-3 flex-shrink-0" fill="none" stroke="currentColor"
+                                viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M5 13l4 4L19 7"></path>
                             </svg>
                             <span class="text-gray-300">No usage limits</span>
                         </li>
                     </ul>
-                    
-                    <a href="/dashboard" class="btn-primary w-full py-4 rounded-2xl text-white font-semibold text-lg animate-glow">
+
+                    <a href="/dashboard"
+                        class="btn-primary w-full py-4 rounded-2xl text-white font-semibold text-lg animate-glow">
                         Start Free Trial
                     </a>
                     <p class="text-sm text-gray-400 mt-4">7-day free trial • Cancel anytime</p>
                 </div>
-                
+
                 <!-- Savings Calculator -->
                 <div class="glass-strong rounded-3xl p-8 sm:p-12 animate-scale-in" style="animation-delay: 0.4s">
                     <h3 class="text-2xl font-space font-bold text-white mb-6 text-center">Calculate Your Savings</h3>
                     <div class="savings-calculator">
                         <div class="mb-6">
-                            <label class="block text-gray-300 mb-3">How much do you currently spend on AI tools per month?</label>
+                            <label class="block text-gray-300 mb-3">How much do you currently spend on AI tools per
+                                month?</label>
                             <input type="range" id="savingsSlider" min="0" max="200" value="50" class="w-full">
                             <div class="flex justify-between text-sm text-gray-400 mt-2">
                                 <span>₹0</span>
                                 <span>₹200+</span>
                             </div>
                         </div>
-                        
+
                         <div class="glass rounded-2xl p-6 text-center">
                             <p class="text-gray-300 mb-2">Your monthly savings with AI Madness:</p>
                             <p id="savingsAmount" class="text-3xl font-space font-bold text-green-400">₹48/mo</p>
                             <p class="text-sm text-gray-400 mt-2">That's ₹576 saved per year!</p>
                         </div>
-                        
+
                         <div class="mt-6 space-y-3">
                             <div class="flex justify-between items-center text-sm">
                                 <span class="text-gray-400">ChatGPT Plus:</span>
@@ -489,70 +559,113 @@
                     Everything you need to know about AI Madness
                 </p>
             </div>
-            
+
             <div class="space-y-4">
                 <div class="glass-strong rounded-2xl overflow-hidden animate-scale-in">
-                    <button class="faq-button w-full px-6 py-6 text-left flex justify-between items-center hover:bg-white/5 transition-colors" data-target="faq1">
+                    <button
+                        class="faq-button w-full px-6 py-6 text-left flex justify-between items-center hover:bg-white/5 transition-colors"
+                        data-target="faq1">
                         <span class="font-semibold text-white">How does AI Madness work?</span>
                         <span class="text-2xl text-gray-400">+</span>
                     </button>
                     <div id="faq1" class="faq-content hidden px-6 pb-6">
-                        <p class="text-gray-300">AI Madness provides a unified interface to access multiple premium AI models. Simply type your prompt, and get responses from ChatGPT, Claude, Gemini, and other top AI models simultaneously. No need to manage multiple subscriptions or switch between different platforms.</p>
+                        <p class="text-gray-300">AI Madness provides a unified interface to access multiple premium AI
+                            models. Simply type your prompt, and get responses from ChatGPT, Claude, Gemini, and other
+                            top AI models simultaneously. No need to manage multiple subscriptions or switch between
+                            different platforms.</p>
                     </div>
                 </div>
-                
+
                 <div class="glass-strong rounded-2xl overflow-hidden animate-scale-in" style="animation-delay: 0.1s">
-                    <button class="faq-button w-full px-6 py-6 text-left flex justify-between items-center hover:bg-white/5 transition-colors" data-target="faq2">
+                    <button
+                        class="faq-button w-full px-6 py-6 text-left flex justify-between items-center hover:bg-white/5 transition-colors"
+                        data-target="faq2">
                         <span class="font-semibold text-white">Is there really unlimited usage?</span>
                         <span class="text-2xl text-gray-400">+</span>
                     </button>
                     <div id="faq2" class="faq-content hidden px-6 pb-6">
-                        <p class="text-gray-300">Yes! Unlike individual AI services that have usage limits or charge per token, AI Madness offers truly unlimited access to all models. Use them as much as you need for your projects, research, or creative work without worrying about hitting limits.</p>
+                        <p class="text-gray-300">Yes! Unlike individual AI services that have usage limits or charge per
+                            token, AI Madness offers truly unlimited access to all models. Use them as much as you need
+                            for your projects, research, or creative work without worrying about hitting limits.</p>
                     </div>
                 </div>
-                
+
                 <div class="glass-strong rounded-2xl overflow-hidden animate-scale-in" style="animation-delay: 0.2s">
-                    <button class="faq-button w-full px-6 py-6 text-left flex justify-between items-center hover:bg-white/5 transition-colors" data-target="faq3">
+                    <button
+                        class="faq-button w-full px-6 py-6 text-left flex justify-between items-center hover:bg-white/5 transition-colors"
+                        data-target="faq3">
                         <span class="font-semibold text-white">Can I cancel anytime?</span>
                         <span class="text-2xl text-gray-400">+</span>
                     </button>
                     <div id="faq3" class="faq-content hidden px-6 pb-6">
-                        <p class="text-gray-300">Absolutely. You can cancel your subscription at any time with just one click. No contracts, no cancellation fees, no questions asked. Your access will continue until the end of your current billing period.</p>
+                        <p class="text-gray-300">Absolutely. You can cancel your subscription at any time with just one
+                            click. No contracts, no cancellation fees, no questions asked. Your access will continue
+                            until the end of your current billing period.</p>
                     </div>
                 </div>
-                
+
                 <div class="glass-strong rounded-2xl overflow-hidden animate-scale-in" style="animation-delay: 0.3s">
-                    <button class="faq-button w-full px-6 py-6 text-left flex justify-between items-center hover:bg-white/5 transition-colors" data-target="faq4">
+                    <button
+                        class="faq-button w-full px-6 py-6 text-left flex justify-between items-center hover:bg-white/5 transition-colors"
+                        data-target="faq4">
                         <span class="font-semibold text-white">What AI models are included?</span>
                         <span class="text-2xl text-gray-400">+</span>
                     </button>
                     <div id="faq4" class="faq-content hidden px-6 pb-6">
-                        <p class="text-gray-300">We include all major AI models: ChatGPT-4, Claude (Anthropic), Google Gemini Pro, DeepSeek, Perplexity, and more. We're constantly adding new models as they become available, so you'll always have access to the latest AI technology.</p>
+                        <p class="text-gray-300">We include all major AI models: ChatGPT-4, Claude (Anthropic), Google
+                            Gemini Pro, DeepSeek, Perplexity, and more. We're constantly adding new models as they
+                            become available, so you'll always have access to the latest AI technology.</p>
                     </div>
                 </div>
-                
+
                 <div class="glass-strong rounded-2xl overflow-hidden animate-scale-in" style="animation-delay: 0.4s">
-                    <button class="faq-button w-full px-6 py-6 text-left flex justify-between items-center hover:bg-white/5 transition-colors" data-target="faq5">
+                    <button
+                        class="faq-button w-full px-6 py-6 text-left flex justify-between items-center hover:bg-white/5 transition-colors"
+                        data-target="faq5">
                         <span class="font-semibold text-white">Is my data secure and private?</span>
                         <span class="text-2xl text-gray-400">+</span>
                     </button>
                     <div id="faq5" class="faq-content hidden px-6 pb-6">
-                        <p class="text-gray-300">Your privacy is our top priority. All conversations are encrypted in transit and at rest. We don't store your prompts or responses permanently, and we never use your data to train AI models. What you create stays private and belongs to you.</p>
+                        <p class="text-gray-300">Your privacy is our top priority. All conversations are encrypted in
+                            transit and at rest. We don't store your prompts or responses permanently, and we never use
+                            your data to train AI models. What you create stays private and belongs to you.</p>
                     </div>
                 </div>
-                
+
                 <div class="glass-strong rounded-2xl overflow-hidden animate-scale-in" style="animation-delay: 0.5s">
-                    <button class="faq-button w-full px-6 py-6 text-left flex justify-between items-center hover:bg-white/5 transition-colors" data-target="faq6">
+                    <button
+                        class="faq-button w-full px-6 py-6 text-left flex justify-between items-center hover:bg-white/5 transition-colors"
+                        data-target="faq6">
                         <span class="font-semibold text-white">Do you offer refunds?</span>
                         <span class="text-2xl text-gray-400">+</span>
                     </button>
                     <div id="faq6" class="faq-content hidden px-6 pb-6">
-                        <p class="text-gray-300">We offer a 7-day free trial so you can test everything risk-free. If you're not satisfied within the first 30 days of your paid subscription, we'll provide a full refund, no questions asked.</p>
+                        <p class="text-gray-300">We offer a 7-day free trial so you can test everything risk-free. If
+                            you're not satisfied within the first 30 days of your paid subscription, we'll provide a
+                            full refund, no questions asked.</p>
                     </div>
                 </div>
             </div>
         </div>
     </section>
+
+    <div class="flex items-center justify-center space-x-4">
+        <a href="/user/dashboard"
+            class="btn-primary px-4 md:px-6 py-2 rounded-2xl text-white font-medium text-sm md:text-base">
+            Get Started Now
+        </a>
+
+        <!-- Mobile menu button -->
+        <button id="mobileMenuBtn" class="md:hidden text-white p-2">
+            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16">
+                </path>
+            </svg>
+        </button>
+    </div>
+
+    <div class="p-5"></div>
+
 
     <!-- Footer -->
     <footer id="login" class="py-16 border-t border-white/10">
@@ -563,34 +676,44 @@
                     <p class="text-gray-400 mb-4">Access all premium AI models in one place for one low price.</p>
                     <p class="text-sm text-gray-500">© 2024 AI Madness. All rights reserved.</p>
                 </div>
-                
+
                 <div>
                     <h4 class="text-lg font-semibold text-white mb-4">Quick Links</h4>
                     <ul class="space-y-2">
-                        <li><a href="#features" class="text-gray-400 hover:text-white transition-colors">Features</a></li>
+                        <li><a href="#features" class="text-gray-400 hover:text-white transition-colors">Features</a>
+                        </li>
                         <li><a href="#pricing" class="text-gray-400 hover:text-white transition-colors">Pricing</a></li>
                         <li><a href="#faq" class="text-gray-400 hover:text-white transition-colors">FAQ</a></li>
                         <li><a href="/dashboard" class="text-gray-400 hover:text-white transition-colors">Login</a></li>
                     </ul>
                 </div>
-                
+
                 <div>
                     <h4 class="text-lg font-semibold text-white mb-4">Connect</h4>
                     <!-- Added proper social media icons -->
                     <div class="flex space-x-4">
-                        <a href="https://twitter.com/aimadness" class="social-icon text-gray-400 hover:text-blue-400 transition-all duration-300" aria-label="Twitter">
+                        <a href="https://x.com/AnupPradhan0"
+                            class="social-icon text-gray-400 hover:text-blue-400 transition-all duration-300"
+                            aria-label="Twitter">
                             <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
-                                <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
+                                <path
+                                    d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z" />
                             </svg>
                         </a>
-                        <a href="https://github.com/aimadness" class="social-icon text-gray-400 hover:text-white transition-all duration-300" aria-label="GitHub">
+                        <a href="https://github.com/M0rs-Ruki"
+                            class="social-icon text-gray-400 hover:text-white transition-all duration-300"
+                            aria-label="GitHub">
                             <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
-                                <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
+                                <path
+                                    d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z" />
                             </svg>
                         </a>
-                        <a href="https://linkedin.com/company/aimadness" class="social-icon text-gray-400 hover:text-blue-600 transition-all duration-300" aria-label="LinkedIn">
+                        <a href="https://www.linkedin.com/in/anup-pradhan77/"
+                            class="social-icon text-gray-400 hover:text-blue-600 transition-all duration-300"
+                            aria-label="LinkedIn">
                             <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
-                                <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
+                                <path
+                                    d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z" />
                             </svg>
                         </a>
                     </div>
@@ -601,4 +724,5 @@
 
     <script src="/js/index.js"></script>
 </body>
+
 </html>
