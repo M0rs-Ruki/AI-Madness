@@ -6,7 +6,240 @@
     <title>AI Madness - Premium AI Dashboard</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="/styles/styles.css">
+    <style>
+        :root {
+            --neon-red: #FF0033;
+            --neon-red-dark: #CC0028;
+            --neon-red-light: #FF4466;
+            --glass-bg: rgba(0, 0, 0, 0.4);
+            --glass-border: rgba(255, 0, 51, 0.3);
+            --premium-black: #0A0A0A;
+            --deep-black: #000000;
+        }
+
+        * {
+            scrollbar-width: thin;
+            scrollbar-color: var(--neon-red) transparent;
+        }
+
+        *::-webkit-scrollbar {
+            width: 6px;
+        }
+
+        *::-webkit-scrollbar-track {
+            background: transparent;
+        }
+
+        *::-webkit-scrollbar-thumb {
+            background: linear-gradient(180deg, var(--neon-red), var(--neon-red-dark));
+            border-radius: 3px;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: linear-gradient(135deg, var(--deep-black) 0%, var(--premium-black) 50%, var(--deep-black) 100%);
+            overflow-x: hidden;
+        }
+
+        .font-orbitron {
+            font-family: 'Orbitron', monospace;
+        }
+
+        /* Enhanced glass effect with better backdrop blur and premium borders */
+        .glass {
+            background: var(--glass-bg);
+            backdrop-filter: blur(20px);
+            border: 1px solid var(--glass-border);
+            box-shadow: 
+                0 8px 32px rgba(0, 0, 0, 0.3),
+                inset 0 1px 0 rgba(255, 255, 255, 0.1);
+        }
+
+        /* Premium neon glow with multiple shadow layers */
+        .neon-glow {
+            box-shadow: 
+                0 0 20px rgba(255, 0, 51, 0.4),
+                0 0 40px rgba(255, 0, 51, 0.2),
+                0 0 80px rgba(255, 0, 51, 0.1);
+        }
+
+        .neon-text {
+            text-shadow: 
+                0 0 10px var(--neon-red),
+                0 0 20px var(--neon-red),
+                0 0 40px var(--neon-red);
+        }
+
+        /* Enhanced AI panel with premium hover effects */
+        .ai-panel {
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .ai-panel::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 0, 51, 0.1), transparent);
+            transition: left 0.6s;
+        }
+
+        .ai-panel:hover::before {
+            left: 100%;
+        }
+
+        .ai-panel:hover {
+            transform: translateY(-4px) scale(1.02);
+            box-shadow: 
+                0 0 30px rgba(255, 0, 51, 0.5),
+                0 0 60px rgba(255, 0, 51, 0.3),
+                0 20px 40px rgba(0, 0, 0, 0.4);
+        }
+
+        .ai-panel.expanded {
+            grid-column: 1 / -1;
+        }
+
+        .ai-panel.minimized {
+            opacity: 0.6;
+            transform: scale(0.95);
+        }
+
+        /* Premium toggle switch with enhanced styling */
+        .toggle-switch {
+            position: relative;
+            width: 60px;
+            height: 28px;
+            background: rgba(0, 0, 0, 0.6);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 14px;
+            cursor: pointer;
+            transition: all 0.4s ease;
+        }
+
+        .toggle-switch.active {
+            background: linear-gradient(45deg, var(--neon-red), var(--neon-red-light));
+            border: 1px solid var(--neon-red);
+            box-shadow: 
+                0 0 20px rgba(255, 0, 51, 0.6),
+                inset 0 1px 0 rgba(255, 255, 255, 0.2);
+        }
+
+        .toggle-slider {
+            position: absolute;
+            top: 2px;
+            left: 2px;
+            width: 24px;
+            height: 24px;
+            background: linear-gradient(145deg, #ffffff, #f0f0f0);
+            border-radius: 50%;
+            transition: all 0.4s ease;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+        }
+
+        .toggle-switch.active .toggle-slider {
+            transform: translateX(32px);
+            background: linear-gradient(145deg, #ffffff, #ffffff);
+            box-shadow: 0 0 15px rgba(255, 255, 255, 0.5);
+        }
+
+        /* Enhanced floating particles with red theme */
+        .floating-particles {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        .particle {
+            position: absolute;
+            width: 3px;
+            height: 3px;
+            background: radial-gradient(circle, var(--neon-red), transparent);
+            border-radius: 50%;
+            animation: float 8s infinite linear;
+        }
+
+        @keyframes float {
+            0% {
+                transform: translateY(100vh) translateX(0) scale(0);
+                opacity: 0;
+            }
+            10% {
+                opacity: 1;
+                transform: scale(1);
+            }
+            90% {
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(-10px) translateX(100px) scale(0);
+                opacity: 0;
+            }
+        }
+
+        /* Enhanced pulse animation */
+        .pulse {
+            animation: pulse 3s infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% {
+                box-shadow: 
+                    0 0 20px rgba(255, 0, 51, 0.4),
+                    0 0 40px rgba(255, 0, 51, 0.2);
+            }
+            50% {
+                box-shadow: 
+                    0 0 30px rgba(255, 0, 51, 0.6),
+                    0 0 60px rgba(255, 0, 51, 0.4),
+                    0 0 100px rgba(255, 0, 51, 0.2);
+            }
+        }
+
+        /* Premium button styles */
+        .premium-btn {
+            background: linear-gradient(145deg, var(--neon-red), var(--neon-red-dark));
+            border: 1px solid var(--neon-red-light);
+            box-shadow: 
+                0 4px 15px rgba(255, 0, 51, 0.3),
+                inset 0 1px 0 rgba(255, 255, 255, 0.2);
+            transition: all 0.3s ease;
+        }
+
+        .premium-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 
+                0 6px 20px rgba(255, 0, 51, 0.4),
+                0 0 30px rgba(255, 0, 51, 0.3),
+                inset 0 1px 0 rgba(255, 255, 255, 0.3);
+        }
+
+        /* Enhanced response area styling */
+        .response-area {
+            background: linear-gradient(145deg, rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.4));
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            box-shadow: inset 0 2px 10px rgba(0, 0, 0, 0.3);
+        }
+
+        @media (max-width: 768px) {
+            .sidebar {
+                transform: translateX(-100%);
+                transition: transform 0.3s ease;
+            }
+            
+            .sidebar.open {
+                transform: translateX(0);
+            }
+        }
+    </style>
 </head>
 <body class="text-white min-h-screen">
     <!-- Floating Particles Background -->
@@ -98,11 +331,9 @@
                     <div class="ai-panel glass rounded-2xl p-6 neon-glow" data-model="chatgpt">
                         <div class="flex justify-between items-center mb-6">
                             <div class="flex items-center space-x-4">
-                                <!-- Added ChatGPT brand logo -->
-                                <div class="w-10 h-10 bg-gradient-to-br from-green-400 to-green-600 rounded-xl flex items-center justify-center shadow-lg">
-                                    <svg class="w-6 h-6 text-white" viewBox="0 0 24 24" fill="currentColor">
-                                        <path d="M22.2819 9.8211a5.9847 5.9847 0 0 0-.5157-4.9108 6.0462 6.0462 0 0 0-6.5098-2.9A6.0651 6.0651 0 0 0 4.9807 4.1818a5.9847 5.9847 0 0 0-3.9977 2.9 6.0462 6.0462 0 0 0 .7427 7.0966 5.98 5.98 0 0 0 .511 4.9107 6.051 6.051 0 0 0 6.5146 2.9001A5.9847 5.9847 0 0 0 13.2599 24a6.0557 6.0557 0 0 0 5.7718-4.2058 5.9894 5.9894 0 0 0 3.9977-2.9001 6.0557 6.0557 0 0 0-.7475-7.0729zm-9.022 12.6081a4.4755 4.4755 0 0 1-2.8764-1.0408l.1419-.0804 4.7783-2.7582a.7948.7948 0 0 0 .3927-.6813v-6.7369l2.02 1.1686a.071.071 0 0 1 .038.052v5.5826a4.504 4.504 0 0 1-4.4945 4.4944zm-9.6607-4.1254a4.4708 4.4708 0 0 1-.5346-3.0137l.142-.0852 4.783-2.7582a.7712.7712 0 0 0 .7806 0l5.8428 3.3685v2.3324a.0804.0804 0 0 1-.0332.0615L9.74 19.9502a4.4992 4.4992 0 0 1-6.1408-1.6464zM2.3408 7.8956a4.485 4.485 0 0 1 2.3655-1.9728V11.6a.7664.7664 0 0 0 .3879.6765l5.8144 3.3543-2.0201 1.1685a.0757.0757 0 0 1-.071 0l-4.8303-2.7865A4.504 4.504 0 0 1 2.3408 7.872zm16.5963 3.8558L13.1038 8.364 15.1192 7.2a.0757.0757 0 0 1 .071 0l4.8303 2.7913a4.4944 4.4944 0 0 1-.6765 8.1042v-5.6772a.79.79 0 0 0-.407-.667zm2.0107-3.0231l-.142-.0852-4.7735-2.7818a.7759.7759 0 0 0-.7854 0L9.409 9.2297V6.8974a.0662.0662 0 0 1 .0284-.0615l4.8303-2.7866a4.4992 4.4992 0 0 1 6.6802 4.66zM8.3065 12.863l-2.02-1.1638a.0804.0804 0 0 1-.038-.0567V6.0742a4.4992 4.4992 0 0 1 7.3757-3.4537l-.142.0805L8.704 5.459a.7948.7948 0 0 0-.3927.6813zm1.0976-2.3654l2.602-1.4998 2.6069 1.4998v2.9994l-2.5974 1.4997-2.6067-1.4997Z"/>
-                                    </svg>
+                                <!-- Enhanced AI model icons with better styling -->
+                                <div class="w-10 h-10 bg-gradient-to-br from-white to-gray-200 rounded-xl flex items-center justify-center shadow-lg">
+                                    <span class="text-sm font-black text-black">GPT</span>
                                 </div>
                                 <h3 class="font-bold text-lg">ChatGPT</h3>
                             </div>
@@ -127,11 +358,8 @@
                     <div class="ai-panel glass rounded-2xl p-6 neon-glow" data-model="claude">
                         <div class="flex justify-between items-center mb-6">
                             <div class="flex items-center space-x-4">
-                                <!-- Added Claude brand logo -->
-                                <div class="w-10 h-10 bg-gradient-to-br from-orange-400 to-orange-600 rounded-xl flex items-center justify-center shadow-lg">
-                                    <svg class="w-6 h-6 text-white" viewBox="0 0 24 24" fill="currentColor">
-                                        <path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm0 22C6.486 22 2 17.514 2 12S6.486 2 12 2s10 4.486 10 10-4.486 10-10 10zm-1-17h2v10h-2V5zm0 12h2v2h-2v-2z"/>
-                                    </svg>
+                                <div class="w-10 h-10 bg-gradient-to-br from-white to-gray-200 rounded-xl flex items-center justify-center shadow-lg">
+                                    <span class="text-sm font-black text-black">C</span>
                                 </div>
                                 <h3 class="font-bold text-lg">Claude</h3>
                             </div>
@@ -156,11 +384,8 @@
                     <div class="ai-panel glass rounded-2xl p-6 neon-glow" data-model="gemini">
                         <div class="flex justify-between items-center mb-6">
                             <div class="flex items-center space-x-4">
-                                <!-- Added Gemini brand logo -->
-                                <div class="w-10 h-10 bg-gradient-to-br from-blue-400 to-purple-600 rounded-xl flex items-center justify-center shadow-lg">
-                                    <svg class="w-6 h-6 text-white" viewBox="0 0 24 24" fill="currentColor">
-                                        <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
-                                    </svg>
+                                <div class="w-10 h-10 bg-gradient-to-br from-white to-gray-200 rounded-xl flex items-center justify-center shadow-lg">
+                                    <span class="text-sm font-black text-black">G</span>
                                 </div>
                                 <h3 class="font-bold text-lg">Gemini</h3>
                             </div>
@@ -185,11 +410,8 @@
                     <div class="ai-panel glass rounded-2xl p-6 neon-glow" data-model="perplexity">
                         <div class="flex justify-between items-center mb-6">
                             <div class="flex items-center space-x-4">
-                                <!-- Added Perplexity brand logo -->
-                                <div class="w-10 h-10 bg-gradient-to-br from-cyan-400 to-blue-600 rounded-xl flex items-center justify-center shadow-lg">
-                                    <svg class="w-6 h-6 text-white" viewBox="0 0 24 24" fill="currentColor">
-                                        <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/>
-                                    </svg>
+                                <div class="w-10 h-10 bg-gradient-to-br from-gray-600 to-gray-800 rounded-xl flex items-center justify-center shadow-lg">
+                                    <span class="text-sm font-black text-white">P</span>
                                 </div>
                                 <h3 class="font-bold text-lg">Perplexity</h3>
                             </div>
@@ -214,11 +436,8 @@
                     <div class="ai-panel glass rounded-2xl p-6 neon-glow" data-model="deepseek">
                         <div class="flex justify-between items-center mb-6">
                             <div class="flex items-center space-x-4">
-                                <!-- Added DeepSeek brand logo -->
                                 <div class="w-10 h-10 bg-gradient-to-br from-red-500 to-red-700 rounded-xl flex items-center justify-center shadow-lg">
-                                    <svg class="w-6 h-6 text-white" viewBox="0 0 24 24" fill="currentColor">
-                                        <path d="M12 2l2.09 6.26L20 10l-5.91 4.26L16.18 22 12 18.27 7.82 22l2.09-7.74L4 10l5.91-1.74L12 2z"/>
-                                    </svg>
+                                    <span class="text-xs font-black text-white">DS</span>
                                 </div>
                                 <h3 class="font-bold text-lg">DeepSeek</h3>
                             </div>
@@ -278,6 +497,142 @@
         </div>
     </div>
 
-    <script src="/js/script.js"></script>
+    <script>
+        // Initialize particles
+        function createParticles() {
+            const particlesContainer = document.getElementById('particles');
+            for (let i = 0; i < 75; i++) {
+                const particle = document.createElement('div');
+                particle.className = 'particle';
+                particle.style.left = Math.random() * 100 + '%';
+                particle.style.animationDelay = Math.random() * 8 + 's';
+                particle.style.animationDuration = (Math.random() * 4 + 4) + 's';
+                particlesContainer.appendChild(particle);
+            }
+        }
+
+        // Mobile menu toggle
+        const mobileMenuToggle = document.getElementById('mobileMenuToggle');
+        const sidebar = document.getElementById('sidebar');
+
+        mobileMenuToggle.addEventListener('click', () => {
+            sidebar.classList.toggle('open');
+        });
+
+        // Toggle switches
+        document.querySelectorAll('.toggle-switch').forEach(toggle => {
+            toggle.addEventListener('click', () => {
+                const model = toggle.dataset.model;
+                const panel = document.querySelector(`[data-model="${model}"]`);
+                const responseArea = panel.querySelector('.response-area');
+                const actions = panel.querySelector('.flex.justify-between');
+                
+                toggle.classList.toggle('active');
+                
+                if (toggle.classList.contains('active')) {
+                    responseArea.classList.remove('opacity-50');
+                    actions.classList.remove('opacity-50');
+                    responseArea.innerHTML = `<div class="text-sm text-gray-200">${model.charAt(0).toUpperCase() + model.slice(1)} is now active and ready!</div>`;
+                } else {
+                    responseArea.classList.add('opacity-50');
+                    actions.classList.add('opacity-50');
+                    responseArea.innerHTML = `<div class="text-sm text-gray-500">Enable to start using ${model}...</div>`;
+                }
+            });
+        });
+
+        // Expand/minimize panels
+        document.querySelectorAll('.expand-btn').forEach(btn => {
+            btn.addEventListener('click', () => {
+                const panel = btn.closest('.ai-panel');
+                const allPanels = document.querySelectorAll('.ai-panel');
+                
+                if (panel.classList.contains('expanded')) {
+                    // Minimize
+                    panel.classList.remove('expanded');
+                    allPanels.forEach(p => p.classList.remove('minimized'));
+                } else {
+                    // Expand
+                    allPanels.forEach(p => {
+                        p.classList.remove('expanded');
+                        if (p !== panel) {
+                            p.classList.add('minimized');
+                        } else {
+                            p.classList.remove('minimized');
+                        }
+                    });
+                    panel.classList.add('expanded');
+                }
+            });
+        });
+
+        // Chat form submission
+        const chatForm = document.getElementById('chatForm');
+        const promptInput = document.getElementById('promptInput');
+
+        chatForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            const prompt = promptInput.value.trim();
+            
+            if (!prompt) return;
+
+            // Get active models
+            const activeModels = [];
+            document.querySelectorAll('.toggle-switch.active').forEach(toggle => {
+                activeModels.push(toggle.dataset.model);
+            });
+
+            if (activeModels.length === 0) {
+                alert('Please enable at least one AI model!');
+                return;
+            }
+
+            // Simulate responses
+            activeModels.forEach(model => {
+                const panel = document.querySelector(`[data-model="${model}"]`);
+                const responseArea = panel.querySelector('.response-area');
+                
+                // Add user message
+                const userMsg = document.createElement('div');
+                userMsg.className = 'mb-4 p-3 bg-red-500/20 rounded-xl text-sm';
+                userMsg.innerHTML = `<strong>You:</strong> ${prompt}`;
+                responseArea.appendChild(userMsg);
+
+                // Simulate AI response
+                setTimeout(() => {
+                    const aiMsg = document.createElement('div');
+                    aiMsg.className = 'mb-4 p-3 bg-black/50 rounded-xl text-sm';
+                    aiMsg.innerHTML = `<strong>${model.charAt(0).toUpperCase() + model.slice(1)}:</strong> This is a simulated response to "${prompt}". In a real implementation, this would connect to the actual ${model} API.`;
+                    responseArea.appendChild(aiMsg);
+                    responseArea.scrollTop = responseArea.scrollHeight;
+                }, Math.random() * 2000 + 500);
+            });
+
+            // Clear input
+            promptInput.value = '';
+        });
+
+        // New chat button
+        document.getElementById('newChatBtn').addEventListener('click', () => {
+            document.querySelectorAll('.response-area').forEach(area => {
+                const model = area.closest('.ai-panel').dataset.model;
+                const isActive = area.closest('.ai-panel').querySelector('.toggle-switch').classList.contains('active');
+                
+                if (isActive) {
+                    area.innerHTML = `<div class="text-sm text-gray-200">${model.charAt(0).toUpperCase() + model.slice(1)} is ready for a new conversation!</div>`;
+                }
+            });
+        });
+
+        // Initialize
+        createParticles();
+
+        // Close sidebar when clicking outside on mobile
+        document.addEventListener('click', (e) => {
+            if (window.innerWidth < 768 && !sidebar.contains(e.target) && !mobileMenuToggle.contains(e.target)) {
+                sidebar.classList.remove('open');
+            }
+        });
+    </script>
 </body>
 </html>

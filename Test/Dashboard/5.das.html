@@ -6,7 +6,240 @@
     <title>AI Madness - Premium AI Dashboard</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="/styles/styles.css">
+    <style>
+        :root {
+            --neon-red: #FF0033;
+            --neon-red-dark: #CC0028;
+            --neon-red-light: #FF4466;
+            --glass-bg: rgba(0, 0, 0, 0.4);
+            --glass-border: rgba(255, 0, 51, 0.3);
+            --premium-black: #0A0A0A;
+            --deep-black: #000000;
+        }
+
+        * {
+            scrollbar-width: thin;
+            scrollbar-color: var(--neon-red) transparent;
+        }
+
+        *::-webkit-scrollbar {
+            width: 6px;
+        }
+
+        *::-webkit-scrollbar-track {
+            background: transparent;
+        }
+
+        *::-webkit-scrollbar-thumb {
+            background: linear-gradient(180deg, var(--neon-red), var(--neon-red-dark));
+            border-radius: 3px;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: linear-gradient(135deg, var(--deep-black) 0%, var(--premium-black) 50%, var(--deep-black) 100%);
+            overflow-x: hidden;
+        }
+
+        .font-orbitron {
+            font-family: 'Orbitron', monospace;
+        }
+
+        /* Enhanced glass effect with better backdrop blur and premium borders */
+        .glass {
+            background: var(--glass-bg);
+            backdrop-filter: blur(20px);
+            border: 1px solid var(--glass-border);
+            box-shadow: 
+                0 8px 32px rgba(0, 0, 0, 0.3),
+                inset 0 1px 0 rgba(255, 255, 255, 0.1);
+        }
+
+        /* Premium neon glow with multiple shadow layers */
+        .neon-glow {
+            box-shadow: 
+                0 0 20px rgba(255, 0, 51, 0.4),
+                0 0 40px rgba(255, 0, 51, 0.2),
+                0 0 80px rgba(255, 0, 51, 0.1);
+        }
+
+        .neon-text {
+            text-shadow: 
+                0 0 10px var(--neon-red),
+                0 0 20px var(--neon-red),
+                0 0 40px var(--neon-red);
+        }
+
+        /* Enhanced AI panel with premium hover effects */
+        .ai-panel {
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .ai-panel::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 0, 51, 0.1), transparent);
+            transition: left 0.6s;
+        }
+
+        .ai-panel:hover::before {
+            left: 100%;
+        }
+
+        .ai-panel:hover {
+            transform: translateY(-4px) scale(1.02);
+            box-shadow: 
+                0 0 30px rgba(255, 0, 51, 0.5),
+                0 0 60px rgba(255, 0, 51, 0.3),
+                0 20px 40px rgba(0, 0, 0, 0.4);
+        }
+
+        .ai-panel.expanded {
+            grid-column: 1 / -1;
+        }
+
+        .ai-panel.minimized {
+            opacity: 0.6;
+            transform: scale(0.95);
+        }
+
+        /* Premium toggle switch with enhanced styling */
+        .toggle-switch {
+            position: relative;
+            width: 60px;
+            height: 28px;
+            background: rgba(0, 0, 0, 0.6);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 14px;
+            cursor: pointer;
+            transition: all 0.4s ease;
+        }
+
+        .toggle-switch.active {
+            background: linear-gradient(45deg, var(--neon-red), var(--neon-red-light));
+            border: 1px solid var(--neon-red);
+            box-shadow: 
+                0 0 20px rgba(255, 0, 51, 0.6),
+                inset 0 1px 0 rgba(255, 255, 255, 0.2);
+        }
+
+        .toggle-slider {
+            position: absolute;
+            top: 2px;
+            left: 2px;
+            width: 24px;
+            height: 24px;
+            background: linear-gradient(145deg, #ffffff, #f0f0f0);
+            border-radius: 50%;
+            transition: all 0.4s ease;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+        }
+
+        .toggle-switch.active .toggle-slider {
+            transform: translateX(32px);
+            background: linear-gradient(145deg, #ffffff, #ffffff);
+            box-shadow: 0 0 15px rgba(255, 255, 255, 0.5);
+        }
+
+        /* Enhanced floating particles with red theme */
+        .floating-particles {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        .particle {
+            position: absolute;
+            width: 3px;
+            height: 3px;
+            background: radial-gradient(circle, var(--neon-red), transparent);
+            border-radius: 50%;
+            animation: float 8s infinite linear;
+        }
+
+        @keyframes float {
+            0% {
+                transform: translateY(100vh) translateX(0) scale(0);
+                opacity: 0;
+            }
+            10% {
+                opacity: 1;
+                transform: scale(1);
+            }
+            90% {
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(-10px) translateX(100px) scale(0);
+                opacity: 0;
+            }
+        }
+
+        /* Enhanced pulse animation */
+        .pulse {
+            animation: pulse 3s infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% {
+                box-shadow: 
+                    0 0 20px rgba(255, 0, 51, 0.4),
+                    0 0 40px rgba(255, 0, 51, 0.2);
+            }
+            50% {
+                box-shadow: 
+                    0 0 30px rgba(255, 0, 51, 0.6),
+                    0 0 60px rgba(255, 0, 51, 0.4),
+                    0 0 100px rgba(255, 0, 51, 0.2);
+            }
+        }
+
+        /* Premium button styles */
+        .premium-btn {
+            background: linear-gradient(145deg, var(--neon-red), var(--neon-red-dark));
+            border: 1px solid var(--neon-red-light);
+            box-shadow: 
+                0 4px 15px rgba(255, 0, 51, 0.3),
+                inset 0 1px 0 rgba(255, 255, 255, 0.2);
+            transition: all 0.3s ease;
+        }
+
+        .premium-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 
+                0 6px 20px rgba(255, 0, 51, 0.4),
+                0 0 30px rgba(255, 0, 51, 0.3),
+                inset 0 1px 0 rgba(255, 255, 255, 0.3);
+        }
+
+        /* Enhanced response area styling */
+        .response-area {
+            background: linear-gradient(145deg, rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.4));
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            box-shadow: inset 0 2px 10px rgba(0, 0, 0, 0.3);
+        }
+
+        @media (max-width: 768px) {
+            .sidebar {
+                transform: translateX(-100%);
+                transition: transform 0.3s ease;
+            }
+            
+            .sidebar.open {
+                transform: translateX(0);
+            }
+        }
+    </style>
 </head>
 <body class="text-white min-h-screen">
     <!-- Floating Particles Background -->
@@ -278,6 +511,202 @@
         </div>
     </div>
 
-    <script src="/js/script.js"></script>
+    <script>
+        // Initialize particles
+        function createParticles() {
+            const particlesContainer = document.getElementById('particles');
+            for (let i = 0; i < 75; i++) {
+                const particle = document.createElement('div');
+                particle.className = 'particle';
+                particle.style.left = Math.random() * 100 + '%';
+                particle.style.animationDelay = Math.random() * 8 + 's';
+                particle.style.animationDuration = (Math.random() * 4 + 4) + 's';
+                particlesContainer.appendChild(particle);
+            }
+        }
+
+        // Mobile menu toggle
+        const mobileMenuToggle = document.getElementById('mobileMenuToggle');
+        const sidebar = document.getElementById('sidebar');
+
+        mobileMenuToggle.addEventListener('click', () => {
+            sidebar.classList.toggle('open');
+        });
+
+        document.querySelectorAll('.toggle-switch').forEach(toggle => {
+            toggle.addEventListener('click', () => {
+                const model = toggle.dataset.model;
+                const panel = document.querySelector(`[data-model="${model}"]`);
+                const isCurrentlyActive = toggle.classList.contains('active');
+                
+                // Check how many AIs are currently active
+                const activeToggles = document.querySelectorAll('.toggle-switch.active');
+                
+                // Prevent disabling if this is the last active AI
+                if (isCurrentlyActive && activeToggles.length === 1) {
+                    // Show warning message
+                    const warningDiv = document.createElement('div');
+                    warningDiv.className = 'fixed top-4 right-4 bg-red-500 text-white px-6 py-3 rounded-xl z-50 font-semibold';
+                    warningDiv.textContent = 'At least one AI must remain active!';
+                    document.body.appendChild(warningDiv);
+                    
+                    // Remove warning after 3 seconds
+                    setTimeout(() => {
+                        warningDiv.remove();
+                    }, 3000);
+                    return;
+                }
+                
+                toggle.classList.toggle('active');
+                
+                if (toggle.classList.contains('active')) {
+                    // Show panel with animation
+                    panel.style.display = 'block';
+                    setTimeout(() => {
+                        panel.style.opacity = '1';
+                        panel.style.transform = 'scale(1)';
+                    }, 10);
+                    
+                    const responseArea = panel.querySelector('.response-area');
+                    const actions = panel.querySelector('.flex.justify-between');
+                    responseArea.classList.remove('opacity-50');
+                    actions.classList.remove('opacity-50');
+                    responseArea.innerHTML = `<div class="text-sm text-gray-200">${model.charAt(0).toUpperCase() + model.slice(1)} is now active and ready!</div>`;
+                } else {
+                    // Hide panel with animation
+                    panel.style.opacity = '0';
+                    panel.style.transform = 'scale(0.8)';
+                    setTimeout(() => {
+                        panel.style.display = 'none';
+                    }, 300);
+                }
+                
+                // Adjust grid layout based on visible panels
+                updateGridLayout();
+            });
+        });
+
+        function updateGridLayout() {
+            const visiblePanels = document.querySelectorAll('.ai-panel[style*="display: block"], .ai-panel:not([style*="display: none"])');
+            const grid = document.getElementById('aiPanelsGrid');
+            
+            // Adjust grid columns based on number of visible panels
+            if (visiblePanels.length === 1) {
+                grid.className = 'grid grid-cols-1 gap-6 mb-6';
+            } else if (visiblePanels.length === 2) {
+                grid.className = 'grid grid-cols-1 md:grid-cols-2 gap-6 mb-6';
+            } else {
+                grid.className = 'grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-6';
+            }
+        }
+
+        function initializePanelVisibility() {
+            document.querySelectorAll('.ai-panel').forEach(panel => {
+                const toggle = panel.querySelector('.toggle-switch');
+                if (!toggle.classList.contains('active')) {
+                    panel.style.display = 'none';
+                } else {
+                    panel.style.display = 'block';
+                    panel.style.opacity = '1';
+                    panel.style.transform = 'scale(1)';
+                }
+            });
+            updateGridLayout();
+        }
+
+        // Expand/minimize panels
+        document.querySelectorAll('.expand-btn').forEach(btn => {
+            btn.addEventListener('click', () => {
+                const panel = btn.closest('.ai-panel');
+                const allPanels = document.querySelectorAll('.ai-panel');
+                
+                if (panel.classList.contains('expanded')) {
+                    // Minimize
+                    panel.classList.remove('expanded');
+                    allPanels.forEach(p => p.classList.remove('minimized'));
+                } else {
+                    // Expand
+                    allPanels.forEach(p => {
+                        p.classList.remove('expanded');
+                        if (p !== panel) {
+                            p.classList.add('minimized');
+                        } else {
+                            p.classList.remove('minimized');
+                        }
+                    });
+                    panel.classList.add('expanded');
+                }
+            });
+        });
+
+        // Chat form submission
+        const chatForm = document.getElementById('chatForm');
+        const promptInput = document.getElementById('promptInput');
+
+        chatForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            const prompt = promptInput.value.trim();
+            
+            if (!prompt) return;
+
+            // Get active models
+            const activeModels = [];
+            document.querySelectorAll('.toggle-switch.active').forEach(toggle => {
+                activeModels.push(toggle.dataset.model);
+            });
+
+            if (activeModels.length === 0) {
+                alert('Please enable at least one AI model!');
+                return;
+            }
+
+            // Simulate responses
+            activeModels.forEach(model => {
+                const panel = document.querySelector(`[data-model="${model}"]`);
+                const responseArea = panel.querySelector('.response-area');
+                
+                // Add user message
+                const userMsg = document.createElement('div');
+                userMsg.className = 'mb-4 p-3 bg-red-500/20 rounded-xl text-sm';
+                userMsg.innerHTML = `<strong>You:</strong> ${prompt}`;
+                responseArea.appendChild(userMsg);
+
+                // Simulate AI response
+                setTimeout(() => {
+                    const aiMsg = document.createElement('div');
+                    aiMsg.className = 'mb-4 p-3 bg-black/50 rounded-xl text-sm';
+                    aiMsg.innerHTML = `<strong>${model.charAt(0).toUpperCase() + model.slice(1)}:</strong> This is a simulated response to "${prompt}". In a real implementation, this would connect to the actual ${model} API.`;
+                    responseArea.appendChild(aiMsg);
+                    responseArea.scrollTop = responseArea.scrollHeight;
+                }, Math.random() * 2000 + 500);
+            });
+
+            // Clear input
+            promptInput.value = '';
+        });
+
+        // New chat button
+        document.getElementById('newChatBtn').addEventListener('click', () => {
+            document.querySelectorAll('.response-area').forEach(area => {
+                const model = area.closest('.ai-panel').dataset.model;
+                const isActive = area.closest('.ai-panel').querySelector('.toggle-switch').classList.contains('active');
+                
+                if (isActive) {
+                    area.innerHTML = `<div class="text-sm text-gray-200">${model.charAt(0).toUpperCase() + model.slice(1)} is ready for a new conversation!</div>`;
+                }
+            });
+        });
+
+        // Initialize
+        createParticles();
+        initializePanelVisibility();
+
+        // Close sidebar when clicking outside on mobile
+        document.addEventListener('click', (e) => {
+            if (window.innerWidth < 768 && !sidebar.contains(e.target) && !mobileMenuToggle.contains(e.target)) {
+                sidebar.classList.remove('open');
+            }
+        });
+    </script>
 </body>
 </html>
