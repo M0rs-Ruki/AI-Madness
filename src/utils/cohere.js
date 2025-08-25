@@ -1,8 +1,4 @@
 import { CohereClient } from "cohere-ai";
-import dotenv from "dotenv";
-import { log } from "console";
-
-dotenv.config({ path: "./.env" });
 
 const client = new CohereClient({
   token: process.env.COHERE_API_KEY,
@@ -10,22 +6,23 @@ const client = new CohereClient({
 
 const aiResponse = async (userPrompt) => {
   try {
-    log("aiResponse");
-
-    if (!userPrompt) {
-      throw new Error("Prompt is required");
-    }
+    const modifiedPrompt = `${userPrompt}. Please give me 3 different answers, numbered as "1.", "2.", and "3."`;
 
     const response = await client.chat({
       model: "command-r-plus",
-      message: userPrompt,
+      message: modifiedPrompt,   // ✅ use "message" not "messages"
+      temperature: 0.9,
     });
 
-    const generation = response?.text;
-    if (!generation) throw new Error("No AI response received");
+    const text = response?.text || "";
 
-    console.log(generation);
-    return generation;
+    // Split answers based on numbering "1.", "2.", "3."
+    const answers = text
+      .split(/\d+\.\s/) // splits on "1. ", "2. ", "3. "
+      .filter(Boolean) // remove empty parts
+      .map((a) => a.trim());
+
+    return answers;
 
   } catch (error) {
     console.error("Error in aiResponse:", error);
