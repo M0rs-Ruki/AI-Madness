@@ -7,12 +7,12 @@ import { hashPass, comparePass } from '../utils/bcryptPasswordUtlis.js';
 
 const register = async (req, res) => {
     try {
-
         const { name, email, password } = req.body;
         if (!name || !email || !password) {
             return res.status(400).json({ message: 'Please fill all the fields' });
         }
 
+        log(req.body.name)
         const userExists = await User.findOne({ email });
         if (userExists) {
             return res.status(400).json({ message: 'User already exists' });
@@ -35,13 +35,7 @@ const register = async (req, res) => {
         sameSite: "strict",
         });
 
-        res.status(201).json({
-        message: "User created successfully",
-        user: {
-            name: newUser.name,
-            email: newUser.email,
-        },
-        });
+        res.redirect('/user/dashboard')
 
 
     } catch (error) {
