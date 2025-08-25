@@ -253,6 +253,7 @@
                             placeholder="Ask me anything..." 
                             class="flex-1 bg-transparent border-none outline-none text-white placeholder-gray-400 text-lg"
                             autocomplete="off"
+                            required
                         >
                         <button type="button" class="text-gray-400 hover:text-red-400 transition-all duration-300 hover:scale-125">
                             <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -266,6 +267,7 @@
                         </button>
                         <button 
                             type="submit" 
+                            id="submitBtn"
                             class="premium-btn text-white p-4 rounded-xl hover:transform hover:scale-110 transition-all duration-300"
                         >
                             <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -278,6 +280,288 @@
         </div>
     </div>
 
-    <script src="/js/script.js"></script>
+    <script>
+        // Initialize particles
+        function createParticles() {
+            const particlesContainer = document.getElementById('particles');
+            for (let i = 0; i < 75; i++) {
+                const particle = document.createElement('div');
+                particle.className = 'particle';
+                particle.style.left = Math.random() * 100 + '%';
+                particle.style.animationDelay = Math.random() * 8 + 's';
+                particle.style.animationDuration = (Math.random() * 4 + 4) + 's';
+                particlesContainer.appendChild(particle);
+            }
+        }
+
+        // Mobile menu toggle
+        const mobileMenuToggle = document.getElementById('mobileMenuToggle');
+        const sidebar = document.getElementById('sidebar');
+
+        mobileMenuToggle.addEventListener('click', () => {
+            sidebar.classList.toggle('open');
+        });
+
+        // Toggle switch functionality
+        document.querySelectorAll('.toggle-switch').forEach(toggle => {
+            toggle.addEventListener('click', () => {
+                const model = toggle.dataset.model;
+                const panel = document.querySelector(`[data-model="${model}"]`);
+                const isCurrentlyActive = toggle.classList.contains('active');
+                
+                // Check how many AIs are currently active
+                const activeToggles = document.querySelectorAll('.toggle-switch.active');
+                
+                // Prevent disabling if this is the last active AI
+                if (isCurrentlyActive && activeToggles.length === 1) {
+                    // Show warning message
+                    const warningDiv = document.createElement('div');
+                    warningDiv.className = 'fixed top-4 right-4 bg-red-500 text-white px-6 py-3 rounded-xl z-50 font-semibold';
+                    warningDiv.textContent = 'At least one AI must remain active!';
+                    document.body.appendChild(warningDiv);
+                    
+                    // Remove warning after 3 seconds
+                    setTimeout(() => {
+                        warningDiv.remove();
+                    }, 3000);
+                    return;
+                }
+                
+                toggle.classList.toggle('active');
+                
+                if (toggle.classList.contains('active')) {
+                    // Show panel with animation
+                    panel.style.display = 'block';
+                    setTimeout(() => {
+                        panel.style.opacity = '1';
+                        panel.style.transform = 'scale(1)';
+                    }, 10);
+                    
+                    const responseArea = panel.querySelector('.response-area');
+                    const actions = panel.querySelector('.flex.justify-between');
+                    responseArea.classList.remove('opacity-50');
+                    actions.classList.remove('opacity-50');
+                    responseArea.innerHTML = `<div class="text-sm text-gray-200">${model.charAt(0).toUpperCase() + model.slice(1)} is now active and ready!</div>`;
+                } else {
+                    // Hide panel with animation
+                    panel.style.opacity = '0';
+                    panel.style.transform = 'scale(0.8)';
+                    setTimeout(() => {
+                        panel.style.display = 'none';
+                    }, 300);
+                }
+                
+                // Adjust grid layout based on visible panels
+                updateGridLayout();
+            });
+        });
+
+        function updateGridLayout() {
+            const visiblePanels = document.querySelectorAll('.ai-panel[style*="display: block"], .ai-panel:not([style*="display: none"])');
+            const grid = document.getElementById('aiPanelsGrid');
+            
+            // Adjust grid columns based on number of visible panels
+            if (visiblePanels.length === 1) {
+                grid.className = 'grid grid-cols-1 gap-6 mb-6';
+            } else if (visiblePanels.length === 2) {
+                grid.className = 'grid grid-cols-1 md:grid-cols-2 gap-6 mb-6';
+            } else {
+                grid.className = 'grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-6';
+            }
+        }
+
+        function initializePanelVisibility() {
+            document.querySelectorAll('.ai-panel').forEach(panel => {
+                const toggle = panel.querySelector('.toggle-switch');
+                if (!toggle.classList.contains('active')) {
+                    panel.style.display = 'none';
+                } else {
+                    panel.style.display = 'block';
+                    panel.style.opacity = '1';
+                    panel.style.transform = 'scale(1)';
+                }
+            });
+            updateGridLayout();
+        }
+
+        // Get active AI panels in order
+        function getActivePanels() {
+            const allPanels = ['chatgpt', 'claude', 'gemini', 'perplexity', 'deepseek'];
+            return allPanels.filter(model => {
+                const toggle = document.querySelector(`[data-model="${model}"] .toggle-switch`);
+                return toggle && toggle.classList.contains('active');
+            });
+        }
+
+        // Show loading state for active panels
+        function showLoadingState() {
+            const activePanels = getActivePanels();
+            
+            activePanels.forEach(model => {
+                const panel = document.querySelector(`[data-model="${model}"]`);
+                const responseArea = panel.querySelector('.response-area');
+                
+                responseArea.innerHTML = `
+                    <div class="flex items-center justify-center h-full">
+                        <div class="animate-spin rounded-full h-8 w-8 border-b-2 border-red-400"></div>
+                        <span class="ml-3 text-sm text-gray-300">Thinking...</span>
+                    </div>
+                `;
+            });
+        }
+
+        // Display responses in active panels
+        function displayResponses(answers) {
+            const activePanels = getActivePanels();
+            
+            // Distribute answers to active panels
+            activePanels.forEach((model, index) => {
+                const panel = document.querySelector(`[data-model="${model}"]`);
+                const responseArea = panel.querySelector('.response-area');
+                
+                if (index < answers.length && answers[index]) {
+                    responseArea.innerHTML = `<div class="text-sm text-gray-200">${answers[index]}</div>`;
+                } else {
+                    responseArea.innerHTML = `<div class="text-sm text-gray-400">No response available</div>`;
+                }
+            });
+        }
+
+        // Handle form submission
+        document.getElementById('chatForm').addEventListener('submit', async (e) => {
+            e.preventDefault();
+            
+            const promptInput = document.getElementById('promptInput');
+            const submitBtn = document.getElementById('submitBtn');
+            const prompt = promptInput.value.trim();
+            
+            if (!prompt) {
+                alert('Please enter a prompt');
+                return;
+            }
+            
+            // Check if any AI is active
+            const activePanels = getActivePanels();
+            if (activePanels.length === 0) {
+                alert('Please enable at least one AI panel');
+                return;
+            }
+            
+            try {
+                // Disable submit button and show loading
+                submitBtn.disabled = true;
+                submitBtn.innerHTML = `
+                    <div class="animate-spin rounded-full h-5 w-5 border-b-2 border-white"></div>
+                `;
+                
+                // Show loading state for all active panels
+                showLoadingState();
+                
+                // Make AJAX request to backend
+                const response = await fetch('/user/prompt', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({ prompt })
+                });
+                
+                if (!response.ok) {
+                    throw new Error(`HTTP error! status: ${response.status}`);
+                }
+                
+                const data = await response.json();
+                
+                // Display the responses
+                if (data.answers && data.answers.length > 0) {
+                    displayResponses(data.answers);
+                } else {
+                    throw new Error('No answers received from API');
+                }
+                
+                // Clear input
+                promptInput.value = '';
+                
+            } catch (error) {
+                console.error('Error:', error);
+                
+                // Show error in all active panels
+                const activePanels = getActivePanels();
+                activePanels.forEach(model => {
+                    const panel = document.querySelector(`[data-model="${model}"]`);
+                    const responseArea = panel.querySelector('.response-area');
+                    responseArea.innerHTML = `<div class="text-sm text-red-400">Error: ${error.message}</div>`;
+                });
+                
+                alert('Error getting AI response. Please try again.');
+            } finally {
+                // Re-enable submit button
+                submitBtn.disabled = false;
+                submitBtn.innerHTML = `
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8"></path>
+                    </svg>
+                `;
+            }
+        });
+
+        // Handle Enter key in input
+        document.getElementById('promptInput').addEventListener('keypress', (e) => {
+            if (e.key === 'Enter' && !e.shiftKey) {
+                e.preventDefault();
+                document.getElementById('chatForm').dispatchEvent(new Event('submit'));
+            }
+        });
+
+        // New chat button functionality
+        document.getElementById('newChatBtn').addEventListener('click', () => {
+            // Clear all response areas
+            document.querySelectorAll('.response-area').forEach(area => {
+                const panel = area.closest('.ai-panel');
+                const model = panel.dataset.model;
+                const toggle = panel.querySelector('.toggle-switch');
+                
+                if (toggle.classList.contains('active')) {
+                    area.innerHTML = `<div class="text-sm text-gray-200">${model.charAt(0).toUpperCase() + model.slice(1)} is ready to assist!</div>`;
+                }
+            });
+            
+            // Clear input
+            document.getElementById('promptInput').value = '';
+            
+            // Focus on input
+            document.getElementById('promptInput').focus();
+        });
+
+        // Initialize everything when page loads
+        document.addEventListener('DOMContentLoaded', () => {
+            createParticles();
+            initializePanelVisibility();
+            
+            // Focus on input for better UX
+            document.getElementById('promptInput').focus();
+        });
+
+        // Handle expand button clicks (optional feature)
+        document.querySelectorAll('.expand-btn').forEach(btn => {
+            btn.addEventListener('click', (e) => {
+                const panel = e.target.closest('.ai-panel');
+                const responseArea = panel.querySelector('.response-area');
+                
+                // Toggle height for expanded view
+                if (responseArea.classList.contains('h-48')) {
+                    responseArea.classList.remove('h-48');
+                    responseArea.classList.add('h-96');
+                    btn.textContent = '⛶';
+                } else {
+                    responseArea.classList.remove('h-96');
+                    responseArea.classList.add('h-48');
+                    btn.textContent = '⛶';
+                }
+            });
+        });
+
+    </script>
 </body>
+
 </html>
